@@ -3,18 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>무한 슬라이드 & 세로병합 그리드</title>
+  <title>최종 보완 레이아웃</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Pretendard', sans-serif; }
 
+    /* [수정] 헤더 메뉴 가로 정렬 보완 */
     header {
       position: fixed; top: 0; left: 0; width: 100%; height: 70px;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 0 40px; background: #fff; color: #000;
+      padding: 0 50px; background: #fff; color: #000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;
     }
+    header .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; }
+    
+    header nav ul { 
+      display: flex;       /* 가로 정렬 */
+      gap: 40px;          /* 메뉴 간격 */
+      list-style: none; 
+      align-items: center;
+    }
+    header nav ul li { 
+      font-size: 0.9rem; 
+      font-weight: 600; 
+      cursor: pointer;
+    }
 
+    /* 메인 컨테이너 */
     .main-wrapper {
       width: 100%; height: 100vh;
       overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth;
@@ -36,7 +51,8 @@
     }
     .x-slide { width: 100vw; height: 100%; display: flex; justify-content: center; align-items: center; }
     
-    .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #000; color: #fff; border: none; width: 50px; height: 50px; cursor: pointer; z-index: 10; border-radius: 50%; }
+    .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #000; color: #fff; border: none; width: 50px; height: 50px; cursor: pointer; z-index: 10; border-radius: 50%; opacity: 0.5; transition: 0.3s; }
+    .arrow:hover { opacity: 1; }
     .prev { left: 30px; } .next { right: 30px; }
     
     .x-nav-wrapper { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width: 240px; height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; }
@@ -53,20 +69,18 @@
     .section-grid { background: #f4f4f4; color: #222; }
     .grid-container { 
       display: grid; 
-      grid-template-columns: repeat(4, 1fr); /* 가로 4열 */
-      grid-template-rows: 1fr;               /* 한 줄이지만 높이를 꽉 채움 */
+      grid-template-columns: repeat(4, 1fr); 
       gap: 20px; 
       width: 90%; 
-      height: 70%; /* 섹션 내부에서 차지할 높이 */
+      height: 70%; 
     }
     .grid-cell { 
       background: #fff; border: 1px solid #ddd; color: #333; 
       display: flex; justify-content: center; align-items: center; 
-      font-size: 1.2rem; border-radius: 12px;
-      /* 세로로 길게 보이기 위해 별도의 높이 지정 없이 grid-container의 높이를 따라감 */
+      font-size: 1.2rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    /* --- SECTION 4: 푸터 --- */
+    /* --- SECTION 4: 푸터 구역 --- */
     .section-footer-area { background: #222; flex-direction: column; }
     footer {
       position: absolute; bottom: 0; left: 0; width: 100%; height: 160px;
@@ -82,7 +96,14 @@
 
   <header>
     <div class="logo">INFINITY STUDIO</div>
-    <nav><ul><li>WORKS</li><li>CONCEPT</li><li>GRID</li><li>CONTACT</li></ul></nav>
+    <nav>
+      <ul>
+        <li>WORKS</li>
+        <li>CONCEPT</li>
+        <li>GRID</li>
+        <li>CONTACT</li>
+      </ul>
+    </nav>
   </header>
 
   <div class="main-wrapper" id="outerContainer">
@@ -126,7 +147,7 @@
   </div>
 
   <script>
-    // X축 무한 슬라이드
+    // X축 무한 슬라이드 로직
     let currentX = 0;
     const totalXSlides = 3;
     const xSlider = document.getElementById('xSlider');
@@ -144,7 +165,7 @@
       updateX();
     }
 
-    // Y축 로직 (스킵 방지)
+    // Y축 로직 및 스킵 방지
     const innerScroll = document.getElementById('innerScroll');
     const yBullets = document.querySelectorAll('.bullet');
     innerScroll.addEventListener('scroll', () => {
