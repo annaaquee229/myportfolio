@@ -1,97 +1,273 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>최종 보완 레이아웃</title>
+  <title>포트폴리오</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Pretendard', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+    }
 
     /* [수정] 헤더 메뉴 가로 정렬 보완 */
     header {
-      position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 50px; background: #fff; color: #000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 50px;
+      background: #fff;
+      color: #000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
     }
-    header .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; }
-    
-    header nav ul { 
-      display: flex;       /* 가로 정렬 */
-      gap: 40px;          /* 메뉴 간격 */
-      list-style: none; 
+
+    header .logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    header nav ul {
+      display: flex;
+      /* 가로 정렬 */
+      gap: 40px;
+      /* 메뉴 간격 */
+      list-style: none;
       align-items: center;
     }
-    header nav ul li { 
-      font-size: 0.9rem; 
-      font-weight: 600; 
+
+    header nav ul li {
+      font-size: 0.9rem;
+      font-weight: 600;
       cursor: pointer;
     }
 
     /* 메인 컨테이너 */
     .main-wrapper {
-      width: 100%; height: 100vh;
-      overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth;
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
     }
-    .main-wrapper::-webkit-scrollbar { display: none; }
+
+    .main-wrapper::-webkit-scrollbar {
+      display: none;
+    }
 
     .outer-section {
-      width: 100%; height: 100vh;
-      scroll-snap-align: start; position: relative;
-      display: flex; justify-content: center; align-items: center;
-      font-size: 3rem; font-weight: bold; color: white;
+      width: 100%;
+      height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
     }
 
     /* --- SECTION 1: X축 무한 슬라이드 --- */
-    .section-x { background: #eee; overflow: hidden; }
-    .x-slider-container { 
-      display: flex; width: 300%; height: 100%; 
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+    .section-x {
+      background: #eee;
+      overflow: hidden;
     }
-    .x-slide { width: 100vw; height: 100%; display: flex; justify-content: center; align-items: center; }
-    
-    .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #000; color: #fff; border: none; width: 50px; height: 50px; cursor: pointer; z-index: 10; border-radius: 50%; opacity: 0.5; transition: 0.3s; }
-    .arrow:hover { opacity: 1; }
-    .prev { left: 30px; } .next { right: 30px; }
-    
-    .x-nav-wrapper { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width: 240px; height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; }
-    .x-nav-bar { width: 33.33%; height: 100%; background: #000; border-radius: 3px; transition: transform 0.5s ease; }
+
+    .x-slider-container {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .x-slide {
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #000;
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      opacity: 0.5;
+      transition: 0.3s;
+    }
+
+    .arrow:hover {
+      opacity: 1;
+    }
+
+    .prev {
+      left: 30px;
+    }
+
+    .next {
+      right: 30px;
+    }
+
+    .x-nav-wrapper {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+
+    .x-nav-bar {
+      width: 33.33%;
+      height: 100%;
+      background: #000;
+      border-radius: 3px;
+      transition: transform 0.5s ease;
+    }
 
     /* --- SECTION 2: Y축 슬라이드 --- */
-    .inner-scroll-box { width: 100%; height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; }
-    .inner-slide { width: 100%; height: 100vh; scroll-snap-align: start; display: flex; justify-content: center; align-items: center; }
-    .inner-bullets { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 10; }
-    .bullet { width: 12px; height: 12px; background: rgba(255,255,255,0.4); border-radius: 50%; transition: 0.4s; }
-    .bullet.active { background: #fff; transform: scale(1.5); }
+    .inner-scroll-box {
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+    }
+
+    .inner-slide {
+      width: 100%;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .inner-bullets {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .bullet {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    .bullet.active {
+      background: #fff;
+      transform: scale(1.5);
+    }
 
     /* --- SECTION 3: 4열 세로 병합 그리드 --- */
-    .section-grid { background: #f4f4f4; color: #222; }
-    .grid-container { 
-      display: grid; 
-      grid-template-columns: repeat(4, 1fr); 
-      gap: 20px; 
-      width: 90%; 
-      height: 70%; 
+    .section-grid {
+      background: #f4f4f4;
+      color: #222;
     }
-    .grid-cell { 
-      background: #fff; border: 1px solid #ddd; color: #333; 
-      display: flex; justify-content: center; align-items: center; 
-      font-size: 1.2rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 90%;
+      height: 70%;
+    }
+
+    .grid-cell {
+      background: #fff;
+      border: 1px solid #ddd;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
 
     /* --- SECTION 4: 푸터 구역 --- */
-    .section-footer-area { background: #222; flex-direction: column; }
-    footer {
-      position: absolute; bottom: 0; left: 0; width: 100%; height: 160px;
-      background: #000; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      padding: 20px; border-top: 1px solid #333;
+    .section-footer-area {
+      background: #222;
+      flex-direction: column;
     }
 
-    .bg-x1 { background: #ff7675; } .bg-x2 { background: #74b9ff; } .bg-x3 { background: #55efc4; }
-    .bg-y1 { background: #6c5ce7; } .bg-y2 { background: #a29bfe; } .bg-y3 { background: #dfe6e9; color: #2d3436; }
+    footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 160px;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      border-top: 1px solid #333;
+    }
+
+    .bg-x1 {
+      background: #ff7675;
+    }
+
+    .bg-x2 {
+      background: #74b9ff;
+    }
+
+    .bg-x3 {
+      background: #55efc4;
+    }
+
+    .bg-y1 {
+      background: #6c5ce7;
+    }
+
+    .bg-y2 {
+      background: #a29bfe;
+    }
+
+    .bg-y3 {
+      background: #dfe6e9;
+      color: #2d3436;
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -100,18 +276,20 @@
       <ul>
         <li>WORKS</li>
         <li>CONCEPT</li>
-        <li>GRID</li>
+        <li>SKILLS</li>
         <li>CONTACT</li>
       </ul>
     </nav>
   </header>
 
   <div class="main-wrapper" id="outerContainer">
-    
+
     <section class="outer-section section-x">
       <button class="arrow prev" onclick="moveX(-1)">&#10094;</button>
       <button class="arrow next" onclick="moveX(1)">&#10095;</button>
-      <div class="x-nav-wrapper"><div class="x-nav-bar" id="xNavBar"></div></div>
+      <div class="x-nav-wrapper">
+        <div class="x-nav-bar" id="xNavBar"></div>
+      </div>
       <div class="x-slider-container" id="xSlider">
         <div class="x-slide bg-x1">INFINITE 01</div>
         <div class="x-slide bg-x2">INFINITE 02</div>
@@ -120,7 +298,11 @@
     </section>
 
     <section class="outer-section">
-      <div class="inner-bullets"><div class="bullet active"></div><div class="bullet"></div><div class="bullet"></div></div>
+      <div class="inner-bullets">
+        <div class="bullet active"></div>
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+      </div>
       <div class="inner-scroll-box" id="innerScroll">
         <div class="inner-slide bg-y1">VERTICAL 01</div>
         <div class="inner-slide bg-y2">VERTICAL 02</div>
@@ -138,7 +320,7 @@
     </section>
 
     <section class="outer-section section-footer-area">
-      <div style="margin-bottom: 200px;">END OF PAGE</div>
+      <div style="margin-bottom: 200px;">contact page</div>
       <footer>
         <div style="font-size: 1.5rem; margin-bottom: 10px;">STUDIO FOOTER</div>
         <div style="color: #666; font-size: 0.9rem;">&copy; 2026 Infinity Portfolio.</div>
@@ -184,4 +366,5 @@
     }, { passive: false });
   </script>
 </body>
+
 </html>
