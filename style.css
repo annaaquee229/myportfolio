@@ -1,295 +1,50 @@
-/* 기본 초기화 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Pretendard', sans-serif; }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Pretendard', sans-serif;
-}
-
-/* 헤더 */
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 100px;
-  background: rgba(10, 10, 10, 0.2);
-  z-index: 1000;
+  position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 200px; background: rgba(10, 10, 10, 0.2); z-index: 1000;
 }
+header .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; color: #000; }
+header nav ul { display: flex; gap: 40px; list-style: none; }
+header nav ul li a { text-decoration: none; color: #000; font-size: 0.9rem; font-weight: 600; }
 
-header .logo {
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #fff;
-}
+.main-wrapper { width: 100%; height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; }
+.main-wrapper::-webkit-scrollbar { display: none; }
+.outer-section { width: 100%; height: 100vh; scroll-snap-align: start; position: relative; }
 
-header nav ul {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-}
+/* X축 슬라이드 */
+.section-x { background: #eee; overflow: hidden; }
+.x-slider-container { display: flex; width: 300%; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+.x-slide { width: 100vw; height: 100%; flex-shrink: 0; display: flex; align-items: center; padding-left: 500px; }
+.arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: #fff; border: none; width: 60px; height: 60px; cursor: pointer; z-index: 100; border-radius: 50%; }
+.prev { left: 30px; } .next { right: 30px; }
+.section-full { position: relative; background-size: cover; background-position: center; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); z-index: 1; }
+.content-box { position: relative; z-index: 2; color: #fff; max-width: 800px; transform: translateX(-300px); }
+.main-title { font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 800; margin-bottom: 20px; }
+.x-text { margin-bottom: 40px; padding-left: 20px; }
+.x-text ul { list-style: none; }
+.x-text ul li { font-size: 1.1rem; font-weight: 300; opacity: 0.8; padding: 0.2rem 0; }
+.btn-group { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.view-btn { display: inline-flex; padding: 12px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; }
+.view-btn:hover { background: #fff; color: #000; }
+.x-nav-container { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
+.x-nav-wrapper { width: 150px; height: 2px; background: rgba(255, 255, 255, 0.3); position: relative; overflow: hidden; }
+.x-nav-bar { width: 33.33%; height: 100%; background: #fff; transition: transform 0.5s; }
+.play-pause-btn { background: none; border: 1px solid rgba(255, 255, 255, 0.5); color: #fff; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 10px; border-radius: 50%; }
 
-header nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
+/* WORKS 전용 (세로 스크롤) */
+.bg-y1 { background: #6c5ce7; } .bg-y2 { background: #a29bfe; } .bg-y3 { background: #dfe6e9; color: #333; }
+.inner-scroll-box { width: 100%; height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; }
+.inner-slide { width: 100%; height: 100vh; scroll-snap-align: start; display: flex; justify-content: center; align-items: center; font-size: 3rem; color: #fff; }
 
-/* 레이아웃 컨테이너 */
-.main-wrapper {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-}
-
-.main-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.outer-section {
-  width: 100%;
-  height: 100vh;
-  scroll-snap-align: start;
-  position: relative;
-}
-
-/* [섹션 1] 가로 슬라이더 스타일 */
-.section-x {
-  background: #eee;
-  overflow: hidden;
-}
-
-.x-slider-container {
-  display: flex;
-  width: 300%;
-  height: 100%;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.x-slide {
-  width: 100vw;
-  height: 100%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  padding-left: 200px;
-}
-
-.section-full {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 1;
-}
-
-.content-box {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  max-width: 800px;
-}
-
-.main-title {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-
-.x-text {
-  margin-bottom: 40px;
-  padding-left: 20px;
-}
-
-.x-text ul {
-  list-style: none;
-}
-
-.x-text ul li {
-  font-size: 1.1rem;
-  font-weight: 300;
-  opacity: 0.8;
-  padding: 0.2rem 0;
-}
-
-.btn-group {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.view-btn {
-  display: inline-flex;
-  padding: 12px 40px;
-  border: 1px solid #fff;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  transition: 0.3s;
-}
-
-.view-btn:hover {
-  background: #fff;
-  color: #000;
-}
-
-.x-nav-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.x-nav-wrapper {
-  width: 150px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.x-nav-bar {
-  width: 33.33%;
-  height: 100%;
-  background: #fff;
-  transition: transform 0.5s;
-}
-
-.play-pause-btn {
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  color: #fff;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 10px;
-  border-radius: 50%;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  z-index: 100;
-  border-radius: 50%;
-}
-
-.prev {
-  left: 30px;
-}
-
-.next {
-  right: 30px;
-}
-
-/* [섹션 2] 세로 스크롤 스타일 (Works) */
-.inner-scroll-box {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-}
-
-.inner-slide {
-  width: 100%;
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
-  color: #fff;
-}
-
-.bg-y1 {
-  background: #6c5ce7;
-}
-
-.bg-y2 {
-  background: #a29bfe;
-}
-
-.bg-y3 {
-  background: #dfe6e9;
-  color: #333;
-}
-
-/* [섹션 3] 그리드 스타일 (Skills) */
-.section-grid {
-  background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 90%;
-  height: 60%;
-}
-
-.grid-cell {
-  background: #fff;
-  border: 1px solid #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-  font-weight: bold;
-}
+/* SKILLS 전용 (그리드) */
+.section-grid { background: #f4f4f4; display: flex; justify-content: center; align-items: center; }
+.grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 90%; height: 60%; }
+.grid-cell { background: #fff; border: 1px solid #ddd; display: flex; justify-content: center; align-items: center; border-radius: 12px; }
 
 /* 푸터 */
-.section-footer-area {
-  background: #111;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  color: #fff;
-}
-
-footer {
-  width: 100%;
-  height: 200px;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid #333;
-}
+.section-footer-area { background: #111; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; color: #fff; }
+footer { width: 100%; height: 200px; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; border-top: 1px solid #333; }

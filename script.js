@@ -7,11 +7,8 @@ const playIcon = document.getElementById('playIcon');
 let autoPlayInterval;
 let isPlaying = true;
 
-// 가로 슬라이더 기능
 function startAutoPlay() {
-  if (xSlider) {
-    autoPlayInterval = setInterval(() => { moveX(1); }, 4000);
-  }
+  if (xSlider) autoPlayInterval = setInterval(() => { moveX(1); }, 4000);
 }
 
 function stopAutoPlay() {
@@ -45,7 +42,6 @@ function moveX(dir) {
   }
 }
 
-// 세로 내부 스크롤 제어 (Works 페이지용)
 const innerScroll = document.getElementById('innerScroll');
 if (innerScroll) {
   innerScroll.addEventListener('wheel', (e) => {
