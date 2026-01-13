@@ -1,4 +1,4 @@
-/* [공통] 기본 초기화 */
+/* [공통] 기본 초기화 및 헤더 (원본 유지) */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,6 @@ body {
   font-family: 'Pretendard', sans-serif;
 }
 
-/* [공통] 헤더: 원본 수치 유지 */
 header {
   position: fixed;
   top: 0;
@@ -48,7 +47,7 @@ header nav ul li a {
   font-weight: 600;
 }
 
-/* ★ 우측 세로 불렛 내비게이션 (스크롤바 대용) ★ */
+/* ★ 우측 세로 불렛 인디케이터 스타일 ★ */
 .scroll-dots {
   position: fixed;
   right: 40px;
@@ -58,7 +57,7 @@ header nav ul li a {
   flex-direction: column;
   gap: 15px;
   z-index: 9999;
-  /* 화면 최상단 고정 */
+  /* 최상단 고정 */
 }
 
 .dot {
@@ -77,16 +76,18 @@ header nav ul li a {
   border: 2px solid #000;
 }
 
-/* 밝은 배경 섹션(bg-y3)에서 불렛 색상 반전 */
+/* 밝은 배경(bg-y3)에서 불렛 색상 반전 */
 .bg-dark-theme .dot {
   background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .bg-dark-theme .dot.active {
   background: #000 !important;
 }
 
-/* [WORKS 전용] 세로 스크롤 컨테이너 */
+/* [기존 섹션 스타일 유지] */
+.main-wrapper,
 .inner-scroll-box {
   width: 100%;
   height: 100vh;
@@ -94,21 +95,28 @@ header nav ul li a {
   scroll-snap-type: y mandatory;
 }
 
+.main-wrapper::-webkit-scrollbar,
 .inner-scroll-box::-webkit-scrollbar {
   display: none;
 }
-
-/* 실제 스크롤바 숨김 */
 
 .inner-slide {
   width: 100%;
   height: 100vh;
   scroll-snap-align: start;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 3rem;
   color: #fff;
+}
+
+/* 내용물 불렛은 디자인에 맞춰 유지하거나 숨기기 */
+.inner-slide ul {
+  list-style: disc;
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
 
 .bg-y1 {
@@ -124,7 +132,7 @@ header nav ul li a {
   color: #333;
 }
 
-/* [INDEX 전용] 가로 슬라이더 수치 유지 */
+/* [가로 슬라이더 수치 유지] */
 .section-x {
   background: #eee;
   overflow: hidden;
@@ -147,11 +155,9 @@ header nav ul li a {
 }
 
 .content-box {
-  transform: translateX(-300px);
+  position: relative;
+  z-index: 2;
   color: #fff;
-}
-
-.main-title {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  font-weight: 800;
+  max-width: 800px;
+  transform: translateX(-300px);
 }
