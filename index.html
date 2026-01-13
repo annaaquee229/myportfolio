@@ -1,68 +1,101 @@
-<section class="outer-section section-x">
-  <div class="common-slider-nav">
-    <a href="works.html" id="dynamicBtn" class="view-btn">PROJECT VIEW</a>
-    <div class="x-nav-container">
-      <div class="x-nav-wrapper">
-        <div class="x-nav-bar" id="xNavBar"></div>
-      </div>
-    </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANNETIQUE STUDIO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">ANNETIQUE STUDIO</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="concept.html">CONCEPT</a></li>
+        <li><a href="skills.html">SKILLS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="scroll-dots" id="scrollDots">
+    <div class="dot active" onclick="scrollToInner(0)"></div>
+    <div class="dot" onclick="scrollToInner(1)"></div>
+    <div class="dot" onclick="scrollToInner(2)"></div>
   </div>
 
-  <div class="x-slider-container" id="xSlider">
-    <div class="x-slide" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
-      <div class="overlay"></div>
-      <div class="content-box">
-        <h2 class="main-title">INFINITY VISION</h2>
-        <div class="x-text">
-          <ul>
-            <li>테스트1줄입니다</li>
-            <li>테스트2줄입니다</li>
-            <li>테스트3줄입니다</li>
-          </ul>
+  <div class="main-wrapper" id="outerContainer">
+    
+    <section class="outer-section section-x">
+      <div class="common-slider-nav">
+        <a href="works.html" id="dynamicBtn" class="view-btn">PROJECT VIEW</a>
+        <div class="x-nav-container">
+          <div class="x-nav-wrapper"><div class="x-nav-bar" id="xNavBar"></div></div>
         </div>
       </div>
-    </div>
+      <div class="x-slider-container" id="xSlider">
+        <div class="x-slide" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
+          <div class="overlay"></div>
+          <div class="content-box">
+            <h2 class="main-title">INFINITY VISION</h2>
+            <div class="x-text"><ul><li>테스트1줄입니다</li><li>테스트2줄입니다</li><li>테스트3줄입니다</li></ul></div>
+          </div>
+        </div>
+        <div class="x-slide" style="background-image: url('https://picsum.photos/id/42/1920/1080');">
+          <div class="overlay"></div>
+          <div class="content-box">
+            <h2 class="main-title">ANNETIQUE STYLE</h2>
+            <div class="x-text"><ul><li>미니멀리즘 디자인</li><li>사용자 인터랙티브</li><li>브랜드 가치 극대화</li></ul></div>
+          </div>
+        </div>
+        <div class="x-slide" style="background-image: url('https://picsum.photos/id/48/1920/1080');">
+          <div class="overlay"></div>
+          <div class="content-box">
+            <h2 class="main-title">SKILL SET</h2>
+            <div class="x-text"><ul><li>HTML5 / CSS3 / JS</li><li>UX Optimization</li><li>Responsive Web</li></ul></div>
+          </div>
+        </div>
+        <div class="x-slide" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
+          <div class="overlay"></div>
+          <div class="content-box">
+            <h2 class="main-title">INFINITY VISION</h2>
+            <div class="x-text"><ul><li>테스트1줄입니다</li><li>테스트2줄입니다</li><li>테스트3줄입니다</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="x-slide" style="background-image: url('https://picsum.photos/id/42/1920/1080');">
-      <div class="overlay"></div>
-      <div class="content-box">
-        <h2 class="main-title">ANNETIQUE STYLE</h2>
-        <div class="x-text">
-          <ul>
-            <li>미니멀리즘 디자인</li>
-            <li>사용자 인터랙티브</li>
-            <li>브랜드 가치 극대화</li>
-          </ul>
-        </div>
+    <section class="outer-section" id="verticalSection">
+      <div class="inner-scroll-box" id="innerScroll">
+        <div class="inner-slide bg-y1"><h1>VERTICAL 01</h1></div>
+        <div class="inner-slide bg-y2"><h1>VERTICAL 02</h1></div>
+        <div class="inner-slide bg-y3"><h1>VERTICAL 03</h1></div>
       </div>
-    </div>
+    </section>
 
-    <div class="x-slide" style="background-image: url('https://picsum.photos/id/48/1920/1080');">
-      <div class="overlay"></div>
-      <div class="content-box">
-        <h2 class="main-title">SKILL SET</h2>
-        <div class="x-text">
-          <ul>
-            <li>HTML5 / CSS3 / JS</li>
-            <li>UX Optimization</li>
-            <li>Responsive Web</li>
-          </ul>
-        </div>
+    <section class="outer-section section-grid">
+      <div class="grid-container">
+        <div class="grid-cell">COLUMN 01</div>
+        <div class="grid-cell">COLUMN 02</div>
+        <div class="grid-cell">COLUMN 03</div>
+        <div class="grid-cell">COLUMN 04</div>
       </div>
-    </div>
+    </section>
 
-    <div class="x-slide" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
-      <div class="overlay"></div>
-      <div class="content-box">
-        <h2 class="main-title">INFINITY VISION</h2>
-        <div class="x-text">
-          <ul>
-            <li>테스트1줄입니다</li>
-            <li>테스트2줄입니다</li>
-            <li>테스트3줄입니다</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <section class="outer-section section-contact">
+      <h1 class="contact-title">CONTACT US</h1>
+      <p>Let's create something amazing together.</p>
+    </section>
+
+    <footer>
+      <div class="footer-logo">ANNETIQUE STUDIO</div>
+      <p>&copy; 2026 Annetique Portfolio. All rights reserved.</p>
+    </footer>
   </div>
-</section>
+
+  <script src="script.js"></script>
+</body>
+</html>
