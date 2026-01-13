@@ -1,81 +1,68 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANNETIQUE STUDIO - HOME</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <div class="logo">ANNETIQUE STUDIO</div>
-    <nav>
-      <ul>
-        <li><a href="works.html">WORKS</a></li>
-        <li><a href="concept.html">CONCEPT</a></li>
-        <li><a href="skills.html">SKILLS</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <div class="main-wrapper">
-    <section class="outer-section section-x">
-      <button class="arrow prev" onclick="moveX(-1)">&#10094;</button>
-      <button class="arrow next" onclick="moveX(1)">&#10095;</button>
-
-      <div class="x-slider-container" id="xSlider">
-        <div class="x-slide section-full" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
-          <div class="overlay"></div>
-          <div class="content-box">
-            <h2 class="main-title">INFINITY VISION</h2>
-            <div class="x-text">
-              <ul><li>테스트1줄입니다</li><li>테스트2줄입니다</li><li>테스트3줄입니다</li></ul>
-            </div>
-            <div class="btn-group">
-              <a href="works.html" class="view-btn">PROJECT VIEW</a>
-              <div class="x-nav-container">
-                <div class="x-nav-wrapper"><div class="x-nav-bar" id="xNavBar"></div></div>
-                <button class="play-pause-btn" onclick="toggleAutoPlay()"><span id="playIcon">II</span></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="x-slide section-full" style="background-image: url('https://picsum.photos/id/42/1920/1080');">
-          <div class="overlay"></div>
-          <div class="content-box">
-            <h2 class="main-title">ANNETIQUE STYLE</h2>
-            <div class="x-text">
-              <ul><li>미니멀리즘 기반의 정제된 디자인</li><li>사용자 중심의 인터랙티브 경험</li><li>브랜드의 가치를 시각적으로 극대화</li></ul>
-            </div>
-            <div class="btn-group"><a href="concept.html" class="view-btn">CONCEPT VIEW</a></div>
-          </div>
-        </div>
-
-        <div class="x-slide section-full" style="background-image: url('https://picsum.photos/id/48/1920/1080');">
-          <div class="overlay"></div>
-          <div class="content-box">
-            <h2 class="main-title">SKILL SET</h2>
-            <div class="x-text">
-              <ul><li>HTML5 / CSS3 / Modern JS</li><li>UI & UX Design Optimization</li><li>Responsive Web Development</li></ul>
-            </div>
-            <div class="btn-group"><a href="skills.html" class="view-btn">SKILLS VIEW</a></div>
-          </div>
-        </div>
+<section class="outer-section section-x">
+  <div class="common-slider-nav">
+    <a href="works.html" id="dynamicBtn" class="view-btn">PROJECT VIEW</a>
+    <div class="x-nav-container">
+      <div class="x-nav-wrapper">
+        <div class="x-nav-bar" id="xNavBar"></div>
       </div>
-    </section>
-
-    <section class="outer-section section-footer-area">
-      <footer>
-        <div class="footer-logo">ANNETIQUE STUDIO</div>
-        <div class="footer-info">
-          <p>&copy; 2026 Annetique Portfolio. All rights reserved.</p>
-        </div>
-      </footer>
-    </section>
+    </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <div class="x-slider-container" id="xSlider">
+    <div class="x-slide" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
+      <div class="overlay"></div>
+      <div class="content-box">
+        <h2 class="main-title">INFINITY VISION</h2>
+        <div class="x-text">
+          <ul>
+            <li>테스트1줄입니다</li>
+            <li>테스트2줄입니다</li>
+            <li>테스트3줄입니다</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="x-slide" style="background-image: url('https://picsum.photos/id/42/1920/1080');">
+      <div class="overlay"></div>
+      <div class="content-box">
+        <h2 class="main-title">ANNETIQUE STYLE</h2>
+        <div class="x-text">
+          <ul>
+            <li>미니멀리즘 디자인</li>
+            <li>사용자 인터랙티브</li>
+            <li>브랜드 가치 극대화</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="x-slide" style="background-image: url('https://picsum.photos/id/48/1920/1080');">
+      <div class="overlay"></div>
+      <div class="content-box">
+        <h2 class="main-title">SKILL SET</h2>
+        <div class="x-text">
+          <ul>
+            <li>HTML5 / CSS3 / JS</li>
+            <li>UX Optimization</li>
+            <li>Responsive Web</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="x-slide" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
+      <div class="overlay"></div>
+      <div class="content-box">
+        <h2 class="main-title">INFINITY VISION</h2>
+        <div class="x-text">
+          <ul>
+            <li>테스트1줄입니다</li>
+            <li>테스트2줄입니다</li>
+            <li>테스트3줄입니다</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
