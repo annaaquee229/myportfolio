@@ -1,3 +1,4 @@
+/* index-live-test.html의 스크립트 그대로 반영 */
 let currentX = 0;
 const totalXSlides = 3;
 const xSlider = document.getElementById('xSlider');
@@ -7,22 +8,12 @@ const playIcon = document.getElementById('playIcon');
 let autoPlayInterval;
 let isPlaying = true;
 
-function startAutoPlay() {
-  if (xSlider) autoPlayInterval = setInterval(() => { moveX(1); }, 4000);
-}
-
-function stopAutoPlay() {
-  clearInterval(autoPlayInterval);
-}
+function startAutoPlay() { if (xSlider) autoPlayInterval = setInterval(() => { moveX(1); }, 4000); }
+function stopAutoPlay() { clearInterval(autoPlayInterval); }
 
 function toggleAutoPlay() {
-  if (isPlaying) {
-    stopAutoPlay();
-    if (playIcon) playIcon.innerText = "▶";
-  } else {
-    startAutoPlay();
-    if (playIcon) playIcon.innerText = "II";
-  }
+  if (isPlaying) { stopAutoPlay(); if (playIcon) playIcon.innerText = "▶"; }
+  else { startAutoPlay(); if (playIcon) playIcon.innerText = "II"; }
   isPlaying = !isPlaying;
 }
 
@@ -36,11 +27,10 @@ function moveX(dir) {
   if (currentX < 0) currentX = totalXSlides - 1;
   else if (currentX >= totalXSlides) currentX = 0;
   updateX();
-  if (isPlaying) {
-    stopAutoPlay();
-    startAutoPlay();
-  }
+  if (isPlaying) { stopAutoPlay(); startAutoPlay(); }
 }
+
+window.onload = startAutoPlay;
 
 const innerScroll = document.getElementById('innerScroll');
 if (innerScroll) {
@@ -49,10 +39,6 @@ if (innerScroll) {
     const scrollHeight = innerScroll.scrollHeight;
     const height = innerScroll.offsetHeight;
     if (e.deltaY < 0 && scrollTop <= 0) return;
-    if (e.deltaY > 0 && scrollTop + height < scrollHeight - 5) {
-      e.stopPropagation();
-    }
+    if (e.deltaY > 0 && scrollTop + height < scrollHeight - 5) { e.stopPropagation(); }
   }, { passive: false });
 }
-
-window.onload = startAutoPlay;
