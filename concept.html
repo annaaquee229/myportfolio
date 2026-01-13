@@ -1,58 +1,42 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CONCEPT - ANNETIQUE STUDIO</title>
-  <style>
-    /* 메인 스타일 유지 + 컨셉 전용 스타일 */
-    .concept-hero {
-      width: 100%;
-      height: 80vh;
-      background: url('https://picsum.photos/id/42/1920/1080') center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      position: relative;
-    }
-
-    .concept-content {
-      padding: 100px 200px;
-      line-height: 2;
-      color: #333;
-    }
-
-    .concept-title {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 50px;
-      border-bottom: 2px solid #000;
-      display: inline-block;
-    }
-
-    .concept-text {
-      font-size: 1.2rem;
-      max-width: 800px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header>...</header>
+  <header>
+    <div class="logo">ANNETIQUE STUDIO</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="concept.html">CONCEPT</a></li>
+        <li><a href="skills.html">SKILLS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="concept-hero">
-    <div class="overlay"></div>
-    <h1 style="position:relative; z-index:2; font-size:5rem;">OUR CONCEPT</h1>
+  <div class="main-wrapper">
+    <section class="outer-section" style="display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
+      <div style="max-width: 800px; text-align: center; padding: 0 20px;">
+        <h1 style="font-size: 4rem; font-weight: 900; margin-bottom: 30px;">CONCEPT</h1>
+        <p style="font-size: 1.2rem; line-height: 1.8; color: #555;">
+          ANNETIQUE STUDIO는 미니멀리즘과 기능성의 조화를 추구합니다.<br>
+          우리는 단순한 디자인을 넘어 사용자에게 깊은 영감을 주는 경험을 설계합니다.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-logo">ANNETIQUE STUDIO</div>
+      <p>&copy; 2026 Annetique Portfolio. All rights reserved.</p>
+    </footer>
   </div>
 
-  <section class="concept-content">
-    <h2 class="concept-title">Design Philosophy</h2>
-    <p class="concept-text">
-      우리는 본질에 집중합니다. 단순한 시각적 아름다움을 넘어 사용자의 삶에 스며드는 인터랙션을 설계합니다.<br>
-      ANNETIQUE STUDIO는 기술과 예술의 경계에서 새로운 가치를 발견하고 제안합니다.
-    </p>
-  </section>
+  <script src="script.js"></script>
 </body>
-
 </html>
