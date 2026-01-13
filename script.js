@@ -1,37 +1,57 @@
+let currentX = 0;
+const totalXSlides = 3;
+const xSlider = document.getElementById('xSlider');
+const xNavBar = document.getElementById('xNavBar');
+const playIcon = document.getElementById('playIcon');
 
-    // X축 무한 슬라이드 로직
-    let currentX = 0;
-    const totalXSlides = 3;
-    const xSlider = document.getElementById('xSlider');
-    const xNavBar = document.getElementById('xNavBar');
+let autoPlayInterval;
+let isPlaying = true;
 
-    function updateX() {
-      xSlider.style.transform = `translateX(-${currentX * 100}vw)`;
-      xNavBar.style.transform = `translateX(${currentX * 100}%)`;
-    }
+// 자동 재생 시작
+function startAutoPlay() {
+  autoPlayInterval = setInterval(() => {
+    moveX(1);
+  }, 4000);
+}
 
-    function moveX(dir) {
-      currentX += dir;
-      if (currentX < 0) currentX = totalXSlides - 1;
-      else if (currentX >= totalXSlides) currentX = 0;
-      updateX();
-    }
+// 자동 재생 정지
+function stopAutoPlay() {
+  clearInterval(autoPlayInterval);
+}
 
-    // Y축 로직 및 스킵 방지
-    const innerScroll = document.getElementById('innerScroll');
-    const yBullets = document.querySelectorAll('.bullet');
-    innerScroll.addEventListener('scroll', () => {
-      const index = Math.round(innerScroll.scrollTop / window.innerHeight);
-      yBullets.forEach((bullet, i) => bullet.classList.toggle('active', i === index));
-    });
+// 재생/일시정지 토글
+function toggleAutoPlay() {
+  if (isPlaying) {
+    stopAutoPlay();
+    playIcon.innerText = "▶";
+  } else {
+    startAutoPlay();
+    playIcon.innerText = "II";
+  }
+  isPlaying = !isPlaying;
+}
 
-    innerScroll.addEventListener('wheel', (e) => {
-      const scrollTop = innerScroll.scrollTop;
-      const scrollHeight = innerScroll.scrollHeight;
-      const height = innerScroll.offsetHeight;
-      if (e.deltaY < 0 && scrollTop <= 0) return;
-      if (e.deltaY > 0 && scrollTop + height < scrollHeight - 5) {
-        e.stopPropagation();
-      }
-    }, { passive: false });
- 
+// 슬라이드 및 내비바 업데이트
+function updateX() {
+  xSlider.style.transform = `translateX(-${currentX * 100}vw)`;
+  if (xNavBar) {
+    xNavBar.style.transform = `translateX(${currentX * 100}%)`;
+  }
+}
+
+// 이동 함수
+function moveX(dir) {
+  currentX += dir;
+  if (currentX < 0) currentX = totalXSlides - 1;
+  else if (currentX >= totalXSlides) currentX = 0;
+  updateX();
+  
+  // 수동 조작 시 타이머 리셋
+  if (isPlaying) {
+    stopAutoPlay();
+    startAutoPlay();
+  }
+}
+
+// 초기 실행
+window.onload = startAutoPlay;
