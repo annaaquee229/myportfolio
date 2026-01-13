@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKS - ANNETIQUE STUDIO</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="works_style.css">
 </head>
 <body>
+
   <header>
     <div class="logo">ANNETIQUE STUDIO</div>
     <nav>
@@ -20,30 +22,30 @@
     </nav>
   </header>
 
-  <div class="main-wrapper">
-    <section class="outer-section section-grid" style="padding-top: 100px;">
-      <div style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 3rem; font-weight: 800;">OUR WORKS</h1>
-        <p>최근 진행한 프로젝트 리스트입니다.</p>
+  <main class="works-wrapper">
+    <div class="section-header">
+      <div class="header-text">
+        <h2>STORY ARCHIVE</h2>
+        <p>다양한 ANNETIQUE의 프로젝트 이야기</p>
       </div>
-      <div class="grid-container">
-        <div class="grid-cell">PROJECT 01</div>
-        <div class="grid-cell">PROJECT 02</div>
-        <div class="grid-cell">PROJECT 03</div>
-        <div class="grid-cell">PROJECT 04</div>
-        <div class="grid-cell">PROJECT 05</div>
-        <div class="grid-cell">PROJECT 06</div>
-        <div class="grid-cell">PROJECT 07</div>
-        <div class="grid-cell">PROJECT 08</div>
-      </div>
-    </section>
+    </div>
 
-    <footer>
-      <div class="footer-logo">ANNETIQUE STUDIO</div>
-      <p>&copy; 2026 Annetique Portfolio. All rights reserved.</p>
-    </footer>
-  </div>
+    <ul class="works-grid" id="worksGrid">
+      </ul>
 
-  <script src="script.js"></script>
+    <div class="more-container">
+      <button class="more-btn" id="moreBtn">
+        <span id="btnText">MORE WORKS</span>
+        <span class="material-icons">expand_more</span>
+      </button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">ANNETIQUE STUDIO</div>
+    <p>&copy; 2026 Annetique Portfolio. All rights reserved.</p>
+  </footer>
+
+  <script src="works_script.js"></script>
 </body>
 </html>
