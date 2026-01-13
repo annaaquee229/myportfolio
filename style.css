@@ -258,3 +258,35 @@
       background: #dfe6e9;
       color: #2d3436;
     }
+/* 1. 메뉴 링크 기본 스타일 (색상 변함 방지) */
+header nav ul li a {
+  text-decoration: none;
+  color: #000; /* 링크 색상을 검정색으로 고정 */
+  font-size: 0.9rem;
+  font-weight: 600;
+  position: relative; /* 라인 위치의 기준점 */
+  padding-bottom: 5px; /* 글자와 라인 사이의 간격 */
+  transition: color 0.3s;
+}
+
+/* 2. 하단 라인 만들기 (처음에는 너비 0) */
+header nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; /* 처음엔 안 보임 */
+  height: 2px; /* 라인 두께 */
+  background-color: #000; /* 라인 색상 */
+  transition: width 0.3s ease; /* 0.3초 동안 부드럽게 길어짐 */
+}
+
+/* 3. 마우스 호버 시 효과 (오른쪽으로 라인 생성) */
+header nav ul li a:hover::after {
+  width: 100%; /* 마우스 올리면 너비가 100%로 확장 */
+}
+
+/* [추가 선택사항] 마우스 올렸을 때 글자 색도 살짝 바꾸고 싶다면? */
+header nav ul li a:hover {
+  color: #666; /* 마우스를 올렸을 때만 회색으로 변경 (원치 않으면 삭제) */
+}
