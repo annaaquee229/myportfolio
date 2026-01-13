@@ -4,75 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <title>SKILLS - ANNETIQUE STUDIO</title>
-  <style>
-    /* 메인 스타일 유지 + 스킬 전용 스타일 */
-    .skills-section {
-      padding: 150px 200px;
-      background: #f9f9f9;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .skill-card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      transition: 0.3s;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .skill-name {
-      font-weight: 800;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-
-    .skill-bar-bg {
-      width: 100%;
-      height: 5px;
-      background: #eee;
-      border-radius: 5px;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: #000;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header>...</header>
-
-  <section class="skills-section">
-    <h1 style="font-size: 3.5rem; font-weight: 900;">SKILL SET</h1>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-name">HTML / CSS</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 95%;"></div>
-        </div>
-        <p style="margin-top:10px; font-size:0.9rem; color:#666;">웹 표준 및 반응형 레이아웃 설계</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">JAVASCRIPT</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 85%;"></div>
-        </div>
-        <p style="margin-top:10px; font-size:0.9rem; color:#666;">DOM 제어 및 인터랙티브 웹 구현</p>
-      </div>
+  <header>
+    <div class="logo">ANNETIQUE STUDIO</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="skills.html">SKILLS</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="outer-section section-grid">
+    <div class="grid-container">
+      <div class="grid-cell">COLUMN 01</div>
+      <div class="grid-cell">COLUMN 02</div>
+      <div class="grid-cell">COLUMN 03</div>
+      <div class="grid-cell">COLUMN 04</div>
     </div>
   </section>
+  <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANNETIQUE STUDIO - PORTFOLIO</title>
+  <title>HOME - ANNETIQUE STUDIO</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
   <header>
     <div class="logo">ANNETIQUE STUDIO</div>
     <nav>
       <ul>
-        <li><a href="index.html">HOME</a></li>
+        <li><a href="works.html">WORKS</a></li>
         <li><a href="concept.html">CONCEPT</a></li>
         <li><a href="skills.html">SKILLS</a></li>
       </ul>
     </nav>
   </header>
-
   <div class="main-wrapper">
     <section class="outer-section section-x">
       <button class="arrow prev" onclick="moveX(-1)">&#10094;</button>
       <button class="arrow next" onclick="moveX(1)">&#10095;</button>
-
       <div class="x-slider-container" id="xSlider">
         <div class="x-slide section-full" style="background-image: url('https://picsum.photos/id/10/1920/1080');">
           <div class="overlay"></div>
@@ -37,19 +36,16 @@
               </ul>
             </div>
             <div class="btn-group">
-              <a href="#" class="view-btn">PROJECT VIEW</a>
+              <a href="works.html" class="view-btn">PROJECT VIEW</a>
               <div class="x-nav-container">
                 <div class="x-nav-wrapper">
                   <div class="x-nav-bar" id="xNavBar"></div>
                 </div>
-                <button class="play-pause-btn" onclick="toggleAutoPlay()">
-                  <span id="playIcon">II</span>
-                </button>
+                <button class="play-pause-btn" onclick="toggleAutoPlay()"><span id="playIcon">II</span></button>
               </div>
             </div>
           </div>
         </div>
-
         <div class="x-slide section-full" style="background-image: url('https://picsum.photos/id/42/1920/1080');">
           <div class="overlay"></div>
           <div class="content-box">
@@ -61,12 +57,9 @@
                 <li>브랜드의 가치를 시각적으로 극대화</li>
               </ul>
             </div>
-            <div class="btn-group">
-              <a href="concept.html" class="view-btn">CONCEPT VIEW</a>
-            </div>
+            <div class="btn-group"><a href="concept.html" class="view-btn">CONCEPT VIEW</a></div>
           </div>
         </div>
-
         <div class="x-slide section-full" style="background-image: url('https://picsum.photos/id/48/1920/1080');">
           <div class="overlay"></div>
           <div class="content-box">
@@ -78,26 +71,21 @@
                 <li>Responsive Web Development</li>
               </ul>
             </div>
-            <div class="btn-group">
-              <a href="skills.html" class="view-btn">SKILLS VIEW</a>
-            </div>
+            <div class="btn-group"><a href="skills.html" class="view-btn">SKILLS VIEW</a></div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="outer-section section-footer-area">
-      <div class="contact-text">READY TO START?</div>
       <footer>
         <div class="footer-logo">ANNETIQUE STUDIO</div>
         <div class="footer-info">
           <p>&copy; 2026 Annetique Portfolio. All rights reserved.</p>
-          <p>Contact: info@annetique.com | Seoul, Korea</p>
         </div>
       </footer>
     </section>
   </div>
-
   <script src="script.js"></script>
 </body>
+
 </html>
