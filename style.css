@@ -1,163 +1,67 @@
-/* [공통] 기본 초기화 및 헤더 (원본 유지) */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Pretendard', sans-serif;
-}
+/* [공통] 초기화 및 헤더 - 원본 유지 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Pretendard', sans-serif; }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 200px;
-  background: rgba(10, 10, 10, 0.2);
-  z-index: 1000;
+  position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 200px; background: rgba(10, 10, 10, 0.2); z-index: 1000;
 }
+header .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; color: #000; }
+header nav ul { display: flex; gap: 40px; list-style: none; }
+header nav ul li a { text-decoration: none; color: #000; font-size: 0.9rem; font-weight: 600; }
 
-header .logo {
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #000;
-}
-
-header nav ul {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-}
-
-header nav ul li a {
-  text-decoration: none;
-  color: #000;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-/* ★ 우측 세로 불렛 인디케이터 스타일 ★ */
+/* ★ [중요] 우측 고정 도트 인디케이터 ★ */
 .scroll-dots {
   position: fixed;
-  right: 40px;
+  right: 50px; /* 우측 끝에서 여백 */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  z-index: 9999;
-  /* 최상단 고정 */
+  gap: 20px;
+  z-index: 9999; /* 어떤 요소보다 위에 표시 */
 }
 
 .dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
+/* 현재 활성화된 점 */
 .dot.active {
   background: #fff !important;
   transform: scale(1.4);
-  border: 2px solid #000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-/* 밝은 배경(bg-y3)에서 불렛 색상 반전 */
-.bg-dark-theme .dot {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-}
+/* 밝은 배경(bg-y3)에서 점이 안 보일 때의 반전색 */
+.bg-dark-theme .dot { background: rgba(0, 0, 0, 0.2); }
+.bg-dark-theme .dot.active { background: #000 !important; }
 
-.bg-dark-theme .dot.active {
-  background: #000 !important;
-}
-
-/* [기존 섹션 스타일 유지] */
-.main-wrapper,
+/* [WORKS] 세로 스크롤 영역 */
 .inner-scroll-box {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  width: 100%; height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory;
 }
-
-.main-wrapper::-webkit-scrollbar,
-.inner-scroll-box::-webkit-scrollbar {
-  display: none;
-}
+.inner-scroll-box::-webkit-scrollbar { display: none; }
 
 .inner-slide {
-  width: 100%;
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
-  color: #fff;
+  width: 100%; height: 100vh; scroll-snap-align: start;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 3rem; color: #fff;
 }
 
-/* 내용물 불렛은 디자인에 맞춰 유지하거나 숨기기 */
-.inner-slide ul {
-  list-style: disc;
-  font-size: 1.2rem;
-  margin-top: 20px;
-}
+.bg-y1 { background: #6c5ce7; }
+.bg-y2 { background: #a29bfe; }
+.bg-y3 { background: #dfe6e9; color: #333; }
 
-.bg-y1 {
-  background: #6c5ce7;
-}
-
-.bg-y2 {
-  background: #a29bfe;
-}
-
-.bg-y3 {
-  background: #dfe6e9;
-  color: #333;
-}
-
-/* [가로 슬라이더 수치 유지] */
-.section-x {
-  background: #eee;
-  overflow: hidden;
-}
-
-.x-slider-container {
-  display: flex;
-  width: 300%;
-  height: 100%;
-  transition: transform 0.6s;
-}
-
-.x-slide {
-  width: 100vw;
-  height: 100%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  padding-left: 500px;
-}
-
-.content-box {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  max-width: 800px;
-  transform: translateX(-300px);
-}
+/* [INDEX] 가로 슬라이더 스타일 (보내주신 내용 그대로 유지) */
+.section-x { background: #eee; overflow: hidden; }
+.x-slider-container { display: flex; width: 300%; height: 100%; transition: transform 0.6s; }
+.x-slide { width: 100vw; height: 100%; flex-shrink: 0; display: flex; align-items: center; padding-left: 500px; }
+.content-box { position: relative; z-index: 2; color: #fff; transform: translateX(-300px); }
