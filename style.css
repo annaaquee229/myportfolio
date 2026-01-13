@@ -1,4 +1,4 @@
-/* 기본 초기화 */
+/* [공통] 기본 초기화 및 폰트 설정 */
 * {
   margin: 0;
   padding: 0;
@@ -10,10 +10,11 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: 'Pretendard', sans-serif;
+  /* 페이지별 개별 스크롤 제어를 위해 기본 오버플로우 차단 */
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
 
-/* 헤더: index-live-test.html 기준 (padding 200px, 로고/메뉴 검정색) */
+/* [공통] 헤더 스타일 - index-live-test.html 기준 */
 header {
   position: fixed;
   top: 0;
@@ -33,6 +34,7 @@ header .logo {
   font-weight: 900;
   letter-spacing: 2px;
   color: #000;
+  /* 원본 검정색 유지 */
 }
 
 header nav ul {
@@ -48,7 +50,7 @@ header nav ul li a {
   font-weight: 600;
 }
 
-/* 메인 스냅 컨테이너 */
+/* [메인] 스냅 컨테이너 및 섹션 설정 */
 .main-wrapper {
   width: 100%;
   height: 100vh;
@@ -67,7 +69,7 @@ header nav ul li a {
   position: relative;
 }
 
-/* 가로 슬라이더: 패딩 500px 및 텍스트 위치(translateX(-300px)) 유지 */
+/* [메인] 가로 슬라이더 (X-Slider) */
 .section-x {
   background: #eee;
   overflow: hidden;
@@ -77,7 +79,7 @@ header nav ul li a {
   display: flex;
   width: 300%;
   height: 100%;
-  transition: transform 0.6s;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .x-slide {
@@ -87,6 +89,23 @@ header nav ul li a {
   display: flex;
   align-items: center;
   padding-left: 500px;
+  /* 원본 레이아웃 수치 유지 */
+}
+
+.section-full {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
 }
 
 .content-box {
@@ -95,6 +114,7 @@ header nav ul li a {
   color: #fff;
   max-width: 800px;
   transform: translateX(-300px);
+  /* 원본 텍스트 위치 유지 */
 }
 
 .main-title {
@@ -103,7 +123,6 @@ header nav ul li a {
   margin-bottom: 20px;
 }
 
-/* 불렛 문제 해결: 메인 슬라이더 내부의 점만 제거 */
 .x-text {
   margin-bottom: 40px;
   padding-left: 20px;
@@ -111,9 +130,9 @@ header nav ul li a {
 
 .x-text ul {
   list-style: none;
+  /* 메인 슬라이드 내 리스트는 점 없음 */
 }
 
-/* 메인 슬라이드 리스트만 점 제거 */
 .x-text ul li {
   font-size: 1.1rem;
   font-weight: 300;
@@ -121,7 +140,29 @@ header nav ul li a {
   padding: 0.2rem 0;
 }
 
-/* 버튼 및 내비게이션 바 */
+/* [메인] 슬라이더 컨트롤러 (버튼/바) */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 100;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 30px;
+}
+
+.next {
+  right: 30px;
+}
+
 .btn-group {
   display: flex;
   flex-direction: column;
@@ -137,6 +178,12 @@ header nav ul li a {
   text-decoration: none;
   font-size: 0.8rem;
   letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+.view-btn:hover {
+  background: #fff;
+  color: #000;
 }
 
 .x-nav-container {
@@ -161,7 +208,21 @@ header nav ul li a {
   transition: transform 0.5s;
 }
 
-/* WORKS: 버티컬 슬라이드 (불렛이 보이도록 설정) */
+.play-pause-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 10px;
+  border-radius: 50%;
+}
+
+/* [WORKS] 버티컬 슬라이드 전용 (불렛 복구 핵심) */
 .inner-scroll-box {
   width: 100%;
   height: 100vh;
@@ -179,15 +240,26 @@ header nav ul li a {
   align-items: center;
   font-size: 3rem;
   color: #fff;
+  text-align: center;
 }
 
+/* 불렛 정렬 해결: 리스트만 왼쪽 정렬로 묶음 */
 .inner-slide ul {
-  list-style: disc;
+  list-style: disc !important;
+  list-style-position: inside;
+  /* 점을 텍스트 안쪽으로 강제 배치 */
   font-size: 1.2rem;
-  margin-top: 20px;
+  margin-top: 25px;
+  padding-left: 0;
+  text-align: left;
+  display: inline-block;
+  /* 중앙에서 왼쪽 정렬 유지 */
 }
 
-/* 불렛 다시 살림 */
+.inner-slide ul li {
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
 
 .bg-y1 {
   background: #6c5ce7;
@@ -202,7 +274,39 @@ header nav ul li a {
   color: #333;
 }
 
-/* SKILLS: 그리드 레이아웃 */
+/* [CONCEPT] 전용 스타일 */
+.concept-hero {
+  width: 100%;
+  height: 80vh;
+  background: url('https://picsum.photos/id/42/1920/1080') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+}
+
+.concept-content {
+  padding: 150px 200px;
+  line-height: 2;
+  color: #333;
+  background: #fff;
+}
+
+.concept-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  border-bottom: 2px solid #000;
+  display: inline-block;
+}
+
+.concept-text {
+  font-size: 1.2rem;
+  max-width: 800px;
+}
+
+/* [SKILLS] 전용 스타일 (그리드 및 카드) */
 .section-grid {
   background: #f4f4f4;
   display: flex;
@@ -226,4 +330,84 @@ header nav ul li a {
   align-items: center;
   border-radius: 12px;
   font-weight: 700;
+}
+
+/* 개별 skills.html 전용 카드 스타일 */
+.skills-section {
+  padding: 150px 200px;
+  background: #f9f9f9;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.skill-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+}
+
+.skill-name {
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.skill-bar-bg {
+  width: 100%;
+  height: 5px;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: #000;
+  border-radius: 5px;
+}
+
+/* [푸터] 스타일 */
+.section-footer-area {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  color: #fff;
+}
+
+footer {
+  width: 100%;
+  height: 200px;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #333;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.footer-info p {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  line-height: 1.5;
+  text-align: center;
 }
