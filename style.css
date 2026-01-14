@@ -24,7 +24,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 200px;
+  padding: 0 10%;
   background: rgba(10, 10, 10, 0.2);
   z-index: 1000;
 }
@@ -110,9 +110,10 @@ header nav ul li a:hover::after {
   height: 100%;
   flex-shrink: 0;
   display: flex;
+  justify-content: flex-start !important;
   align-items: center;
   /* 세로 중앙 정렬은 유지하되 */
-  padding-left: 200px;
+  padding-left: 10%;
   /* 원본 패딩 값 */
   position: relative;
   background-size: cover;
@@ -134,8 +135,12 @@ header nav ul li a:hover::after {
   position: relative;
   z-index: 2;
   color: #fff;
-  max-width: 800px;
+  max-width: 600px;
   text-align: left;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  max-width: 800px;
+  width: 100%;
   /* 스크린샷 위치 조정을 위한 트랜스폼 제거 및 위치 조정 */
   margin-top: -100px;
 }
@@ -167,7 +172,7 @@ header nav ul li a:hover::after {
   position: absolute;
   bottom: 80px;
   /* 스크린샷 하단 위치 */
-  left: 200px;
+  left: 10%;
   /* 스크린샷 좌측 위치 */
   z-index: 100;
   display: flex;
@@ -405,4 +410,43 @@ footer {
 .dot.active {
   background: #fff !important;
   transform: scale(1.4);
+}
+
+
+
+/* *********************미디어 쿼리 */
+/* 3. [추가] 모바일 및 작은 창을 위한 미디어 쿼리 */
+/* ********************* 미디어 쿼리 수정 */
+/* --------------------------------------------------
+   [최종] 해상도 누락 제로 & 좌측 고정 통합
+-------------------------------------------------- */
+
+/* 1. 초대형 해상도 (2000px 이상) */
+@media (min-width: 2000px) {
+  header { padding: 0 200px !important; }
+  .x-slide { padding-left: 200px !important; }
+  .common-slider-nav { left: 200px !important; }
+}
+
+/* 2. 일반 데스크탑 (1201px ~ 1999px) - 1440px 포함 구간 */
+/* 이 구간을 명시함으로써 1440px에서 센터로 가던 공백을 완벽히 제거합니다. */
+@media (min-width: 1201px) and (max-width: 1999px) {
+  header { padding: 0 10% !important; }
+  .x-slide { padding-left: 10% !important; }
+  .common-slider-nav { left: 10% !important; }
+}
+
+/* 3. 태블릿/노트북 (769px ~ 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  header { padding: 0 50px !important; }
+  .x-slide { padding-left: 50px !important; }
+  .common-slider-nav { left: 50px !important; }
+}
+
+/* 4. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+  header { padding: 0 20px !important; }
+  .x-slide { padding-left: 20px !important; }
+  .common-slider-nav { left: 20px !important; }
+  /* 텍스트 사이즈는 기존 style.css에 설정하신 값을 유지하도록 건드리지 않았습니다. */
 }
