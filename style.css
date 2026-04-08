@@ -140,7 +140,7 @@ header nav ul li a:hover::after {
   margin-left: 0 !important;
   margin-right: auto !important;
   max-width: 800px;
-  width: 100%;
+  width: -570px;
   /* 스크린샷 위치 조정을 위한 트랜스폼 제거 및 위치 조정 */
   margin-top: -100px;
 }
