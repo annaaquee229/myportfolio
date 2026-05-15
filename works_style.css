@@ -96,6 +96,7 @@ header nav ul li a {
   overflow: hidden;
   background: #1a1a1a;
   display: none;
+  cursor: pointer; /* 마우스 올렸을 때 클릭 가능한 손가락 모양 */
 }
 
 /* 초기 9개 노출 (3열이므로 9개가 깔끔함) */
@@ -185,4 +186,117 @@ footer {
   font-weight: 900;
   color: #fff;
   margin-bottom: 10px;
+}
+
+/* ==========================================
+   상세 보기 모달 팝업 스타일 (크기 고정 업데이트)
+========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  width: auto; /* 이미지 고정 크기에 맞추기 위해 auto로 변경 */
+  max-width: 95%;
+  border: 1px solid #444;
+  position: relative;
+  transform: translateY(30px);
+  transition: transform 0.4s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 화면 너비가 넓은 데스크탑 환경에서 좌우 정렬 및 이미지 크기 600x600 고정 */
+@media (min-width: 900px) {
+  .modal-body {
+    flex-direction: row;
+  }
+
+  .modal-img-wrap {
+    width: 600px;  /* 💡 가로 600px 고정 */
+    height: 600px; /* 💡 세로 600px 고정 */
+    flex: none;    /* Flex 비율 분배 해제 */
+  }
+
+  .modal-txt-wrap {
+    width: 400px;  /* 텍스트 영역 가로 크기 지정 */
+    height: 600px; /* 이미지 높이와 통일하여 대칭 구축 */
+    padding: 50px;
+  }
+}
+
+/* 반응형 모바일 환경 대응 (화면이 너무 좁을 때) */
+@media (max-width: 899px) {
+  .modal-content {
+    width: 90%;
+    max-width: 500px;
+  }
+  .modal-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  .modal-txt-wrap {
+    padding: 30px 20px;
+  }
+}
+
+.modal-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-txt-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-txt-wrap h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.modal-txt-wrap p {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.7;
 }

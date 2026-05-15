@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직
+   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (너비 연산 오류 완벽 교정본)
 -------------------------------------------------- */
 
 /* 1. 가로 무한 슬라이더 및 재생/정지 제어 */
@@ -8,10 +8,10 @@ const totalSlides = 3;
 const xSlider = document.getElementById('xSlider');
 const xNavBar = document.getElementById('xNavBar');
 const dynamicBtn = document.getElementById('dynamicBtn');
-const slideAutoBtn = document.getElementById('slideAutoBtn'); // HTML에 추가한 버튼 ID
+const slideAutoBtn = document.getElementById('slideAutoBtn'); 
 
-let isAutoPlay = true; // 자동 재생 상태 변수
-let slideInterval = setInterval(moveX, 2000); // 2초 간격 실행
+let isAutoPlay = true; 
+let slideInterval = setInterval(moveX, 2000); 
 
 function moveX() {
   currentX++;
@@ -31,7 +31,8 @@ function moveX() {
 
 function updateSlider() {
   if (xSlider) {
-    xSlider.style.transform = `translateX(-${currentX * 100}vw)`;
+    /* 데스크탑 세로 스크롤바 오차를 일으키던 100vw 연산을 부모 대비 % 이동 연산으로 완전히 대체 */
+    xSlider.style.transform = `translateX(-${currentX * 25}%)`;
   }
   const realIndex = currentX % totalSlides;
   
@@ -53,11 +54,9 @@ function updateSlider() {
 if (slideAutoBtn) {
   slideAutoBtn.addEventListener('click', () => {
     if (isAutoPlay) {
-      // 멈춤 상태로 전환
       clearInterval(slideInterval);
       slideAutoBtn.innerText = "PLAY";
     } else {
-      // 재생 상태로 전환
       slideInterval = setInterval(moveX, 2000);
       slideAutoBtn.innerText = "STOP";
     }
@@ -73,13 +72,11 @@ const outerContainer = document.getElementById('outerContainer');
 const verticalSection = document.getElementById('verticalSection');
 
 if (innerScroll) {
-  // 내부 세로 스크롤 시 도트 활성화
   innerScroll.addEventListener('scroll', () => {
     const index = Math.round(innerScroll.scrollTop / innerScroll.offsetHeight);
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   });
 
-  // 스크롤 전파 방지 (내부 스크롤 우선)
   innerScroll.addEventListener('wheel', (e) => {
     const scrollTop = innerScroll.scrollTop;
     if (e.deltaY < 0 && scrollTop <= 0) return;
@@ -89,13 +86,11 @@ if (innerScroll) {
   }, { passive: false });
 }
 
-// 전체 레이아웃 스크롤 시 도트 노출 여부 제어
 if (outerContainer && verticalSection) {
   outerContainer.addEventListener('scroll', () => {
     const vTop = verticalSection.offsetTop;
     const current = outerContainer.scrollTop;
     
-    // 세로 섹션(Vertical Section) 영역에 도달했을 때만 도트 표시
     if (current >= vTop - 50 && current < vTop + verticalSection.offsetHeight - 50) {
       scrollDots.classList.add('visible');
     } else {

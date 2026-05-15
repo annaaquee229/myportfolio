@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   [CSS] ANNETIQUE STUDIO - 이미지 기반 레이아웃 완벽 복구
+   [CSS] ANNETIQUE STUDIO - 표준 미디어 쿼리 및 절대 좌표 좌측 고정본
 -------------------------------------------------- */
 * {
   margin: 0;
@@ -78,7 +78,7 @@ header nav ul li a:hover::after {
   width: 100%;
   height: 100vh;
   overflow-y: auto;
-  scroll-behavior: smooth; /* 내부 세로 스냅도 부드럽게 */
+  scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
 }
 .main-wrapper::-webkit-scrollbar {
@@ -92,7 +92,7 @@ header nav ul li a:hover::after {
   position: relative;
 }
 
-/* [섹션 1] 가로 슬라이더 - 스크린샷 기반 위치 복구 */
+/* [섹션 1] 가로 슬라이더 */
 .section-x {
   background: #eee;
   overflow: hidden;
@@ -105,17 +105,12 @@ header nav ul li a:hover::after {
   height: 100%;
 }
 
+/* 400% 대형 Flex 안에서 자식들의 축이 꼬이지 않도록 absolute 기준점 역할만 부여 */
 .x-slide {
   width: 100vw;
   height: 100%;
   flex-shrink: 0;
-  display: flex;
-  justify-content: flex-start !important;
-  align-items: center;
-  /* 세로 중앙 정렬은 유지하되 */
-  padding-left: 10%;
-  /* 원본 패딩 값 */
-  position: relative;
+  position: relative; 
   background-size: cover;
   background-position: center;
 }
@@ -130,34 +125,35 @@ header nav ul li a:hover::after {
   z-index: 1;
 }
 
-/* 텍스트 박스 위치: 스크린샷처럼 슬라이더 위쪽 좌측에 고정 */
+/* 브라우저의 가로축 연산 오류에 휘말리지 않게 absolute로 띄워 화면 좌측에 고정 */
 .content-box {
-  position: relative;
+  position: absolute;
+  left: 10%;            
+  top: 50%;             
+  transform: translateY(-50%); 
   z-index: 2;
   color: #fff;
-  max-width: 600px;
-  text-align: left;
-  margin-left: 0 !important;
-  margin-right: auto !important;
-  max-width: 800px;
-  width: -570px;
-  /* 스크린샷 위치 조정을 위한 트랜스폼 제거 및 위치 조정 */
-  margin-top: -100px;
+  width: 100%;
+  max-width: 600px;     
+  text-align: left;     
 }
 
 .main-title {
   font-size: clamp(2.5rem, 7vw, 4.5rem);
   font-weight: 800;
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .x-text {
   margin-bottom: 40px;
   padding-left: 20px;
+  text-align: left;
 }
 
 .x-text ul {
   list-style: none;
+  text-align: left;
 }
 
 .x-text ul li {
@@ -165,15 +161,14 @@ header nav ul li a:hover::after {
   font-weight: 300;
   opacity: 0.8;
   padding: 0.2rem 0;
+  text-align: left;
 }
 
-/* 네비게이션 및 슬라이드 바 위치 (원본 100% 복구) */
+/* 네비게이션 및 슬라이드 바 위치 */
 .common-slider-nav {
   position: absolute;
   bottom: 80px;
-  /* 스크린샷 하단 위치 */
   left: 10%;
-  /* 스크린샷 좌측 위치 */
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -199,13 +194,7 @@ header nav ul li a:hover::after {
 .x-nav-container {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-/* 슬라이드 바 컨테이너를 가로로 정렬 */
-.x-nav-container {
-  display: flex;
-  align-items: center;
-  gap: 20px; /* 바와 버튼 사이 간격 */
+  gap: 20px;
   position: relative;
 }
 
@@ -217,7 +206,6 @@ header nav ul li a:hover::after {
   overflow: hidden;
 }
 
-/* 재생/정지 버튼 스타일 */
 .slide-ctrl-btn {
   background: none;
   border: none;
@@ -236,25 +224,17 @@ header nav ul li a:hover::after {
 .slide-ctrl-btn:hover {
   opacity: 0.7;
 }
-.x-nav-wrapper {
-  width: 150px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-  position: relative;
-  overflow: hidden;
-}
 
 .x-nav-bar {
   width: 33.33%;
   height: 100%;
   background: #fff;
   transition: transform 0.5s;
-  /* JS 연동 필수 */
 }
 
 /* [섹션 2] 세로 스냅 */
 .inner-scroll-box {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
@@ -277,24 +257,31 @@ header nav ul li a:hover::after {
 }
 
 .bg-y1 {
-  background: #6c5ce7;
+  background: #f383a7;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .bg-y2 {
-  background: #a29bfe;
+  background: #f383a7;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .bg-y3 {
-  background: #dfe6e9;
+  background: #f383a7;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #333;
 }
 
-/* --------------------------------------------------
-   [신규 섹션 3] 요청하신 비대칭 그리드 레이아웃
--------------------------------------------------- */
+/* [섹션 3] 비대칭 그리드 레이아웃 */
 .section-grid {
   background: #2b2b2b;
-  /* 요청하신 다크 배경 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -368,7 +355,7 @@ header nav ul li a:hover::after {
   color: #000;
 }
 
-/* 푸터 원본 복구 */
+/* 푸터 */
 footer {
   width: 100%;
   height: 150px;
@@ -381,7 +368,7 @@ footer {
   scroll-snap-align: end;
 }
 
-/* 도트 인디케이터 원본 복구 */
+/* 도트 인디케이터 */
 .scroll-dots {
   position: fixed;
   right: 40px;
@@ -408,45 +395,39 @@ footer {
 }
 
 .dot.active {
-  background: #fff !important;
+  background: #fff;
   transform: scale(1.4);
 }
 
 
-
-/* *********************미디어 쿼리 */
-/* 3. [추가] 모바일 및 작은 창을 위한 미디어 쿼리 */
-/* ********************* 미디어 쿼리 수정 */
 /* --------------------------------------------------
-   [최종] 해상도 누락 제로 & 좌측 고정 통합
+   [미디어 쿼리 - 초대형 해상도 삭제 및 압축 수정본]
 -------------------------------------------------- */
 
-/* 1. 초대형 해상도 (2000px 이상) */
-@media (min-width: 2000px) {
-  header { padding: 0 200px !important; }
-  .x-slide { padding-left: 200px !important; }
-  .common-slider-nav { left: 200px !important; }
+/* 1. 일반 데스크탑 전체 통합 (1201px 이상 해상도 칼매칭) */
+@media (min-width: 1201px) {
+  header { padding: 0 10%; }
+  .common-slider-nav { left: 10%; }
+  .content-box { left: 10%; }  
 }
 
-/* 2. 일반 데스크탑 (1201px ~ 1999px) - 1440px 포함 구간 */
-/* 이 구간을 명시함으로써 1440px에서 센터로 가던 공백을 완벽히 제거합니다. */
-@media (min-width: 1201px) and (max-width: 1999px) {
-  header { padding: 0 10% !important; }
-  .x-slide { padding-left: 10% !important; }
-  .common-slider-nav { left: 10% !important; }
-}
-
-/* 3. 태블릿/노트북 (769px ~ 1200px) */
+/* 2. 태블릿/작은 노트북 (769px ~ 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
-  header { padding: 0 50px !important; }
-  .x-slide { padding-left: 50px !important; }
-  .common-slider-nav { left: 50px !important; }
+  header { padding: 0 50px; }
+  .common-slider-nav { left: 50px; }
+  .content-box { left: 50px; }
 }
 
-/* 4. 모바일 (768px 이하) */
+/* 3. 모바일 (768px 이하) */
 @media (max-width: 768px) {
-  header { padding: 0 20px !important; }
-  .x-slide { padding-left: 20px !important; }
-  .common-slider-nav { left: 20px !important; }
-  /* 텍스트 사이즈는 기존 style.css에 설정하신 값을 유지하도록 건드리지 않았습니다. */
+  header { padding: 0 20px; }
+  .common-slider-nav { left: 20px; }
+  .content-box { 
+    left: 20px; 
+    max-width: calc(100% - 40px); 
+    top: 45%; 
+  }
+  .main-title { font-size: 2.2rem; line-height: 1.3; }
+  .x-text { padding-left: 10px; }
+  .x-text ul li { font-size: 0.95rem; }
 }
