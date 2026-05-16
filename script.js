@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (너비 연산 오류 완벽 교정본)
+   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (내부 해시 이동 최적화)
 -------------------------------------------------- */
 
 /* 1. 가로 무한 슬라이더 및 재생/정지 제어 */
@@ -31,7 +31,6 @@ function moveX() {
 
 function updateSlider() {
   if (xSlider) {
-    /* 데스크탑 세로 스크롤바 오차를 일으키던 100vw 연산을 부모 대비 % 이동 연산으로 완전히 대체 */
     xSlider.style.transform = `translateX(-${currentX * 25}%)`;
   }
   const realIndex = currentX % totalSlides;
@@ -41,8 +40,8 @@ function updateSlider() {
     xNavBar.style.transform = `translateX(${realIndex * 100}%)`;
   }
   
-  // 버튼 링크 및 텍스트 변경
-  const links = ["works.html", "concept.html", "skills.html"];
+  // 💡 [버튼 경로 교정] 외부 .html 파일이 아닌 현재 인덱스 페이지 안의 내부 섹션 ID(#)로 타겟을 변경합니다.
+  const links = ["#storySection", "#verticalSection", "#storySection"];
   const texts = ["PROJECT VIEW", "CONCEPT VIEW", "SKILLS VIEW"];
   if (dynamicBtn) {
     dynamicBtn.href = links[realIndex];
