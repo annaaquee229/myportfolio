@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (창 전환 완벽 원상복구본)
+   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (창 전환 완벽 수정본)
 -------------------------------------------------- */
 
 /* 1. 가로 무한 슬라이더 및 재생/정지 제어 */
@@ -31,6 +31,7 @@ function moveX() {
 
 function updateSlider() {
   if (xSlider) {
+    /* 데스크탑 세로 스크롤바 우측 튕김 오류를 잡기 위해 부모 크기 기반 % 이동 연산 적용 */
     xSlider.style.transform = `translateX(-${currentX * 25}%)`;
   }
   const realIndex = currentX % totalSlides;
@@ -40,7 +41,7 @@ function updateSlider() {
     xNavBar.style.transform = `translateX(${realIndex * 100}%)`;
   }
   
-  // 💡 [창 전환 경로 복구] 각 슬라이드 번호에 매칭되는 진짜 외부 html 개별 주소 파일로 현재 창 내 이동을 처리합니다.
+  // 💡 [창 전환 완벽 매칭] 슬라이드 테마에 맞춰 매칭된 개별 실물 페이지 파일 주소로 깔끔하게 화면 전환됩니다.
   const links = ["works.html", "concept.html", "skills.html"];
   const texts = ["PROJECT VIEW", "CONCEPT VIEW", "SKILLS VIEW"];
   if (dynamicBtn) {
