@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (내부 해시 이동 최적화)
+   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (창 전환 완벽 원상복구본)
 -------------------------------------------------- */
 
 /* 1. 가로 무한 슬라이더 및 재생/정지 제어 */
@@ -40,8 +40,8 @@ function updateSlider() {
     xNavBar.style.transform = `translateX(${realIndex * 100}%)`;
   }
   
-  // 💡 [버튼 경로 교정] 외부 .html 파일이 아닌 현재 인덱스 페이지 안의 내부 섹션 ID(#)로 타겟을 변경합니다.
-  const links = ["#storySection", "#verticalSection", "#storySection"];
+  // 💡 [창 전환 경로 복구] 각 슬라이드 번호에 매칭되는 진짜 외부 html 개별 주소 파일로 현재 창 내 이동을 처리합니다.
+  const links = ["works.html", "concept.html", "skills.html"];
   const texts = ["PROJECT VIEW", "CONCEPT VIEW", "SKILLS VIEW"];
   if (dynamicBtn) {
     dynamicBtn.href = links[realIndex];
