@@ -69,7 +69,7 @@ header nav ul li a:hover::after {
   height: 100vh;
   overflow-y: auto;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  /*scroll-snap-type: y mandatory; 스냅 생략 */ 
 }
 
 .main-wrapper::-webkit-scrollbar {
@@ -225,6 +225,7 @@ header nav ul li a:hover::after {
   height: auto;
   position: relative;
   background: #F383A7; 
+  padding-bottom: 60px;
 }
 
 .flow-fixed-title {
@@ -258,19 +259,21 @@ header nav ul li a:hover::after {
 
 .flow-slide {
   width: 100%;
-  height: 100vh;
-  scroll-snap-align: start;
+  /*height: 100vh;*/
+  height: auto;
+  /*scroll-snap-align: start; */ /*스냅제거*/
+
   display: flex;
   justify-content: center; 
   align-items: center;
   position: relative;
-  padding: 0 10%;
+  padding: 80px 15%;
   gap: 5%;
 }
 
 .slide-center-img {
   width: 32vw;             
-  height: 65vh;            
+  height: 55vh;            
   overflow: hidden;
   background: #F383A7;
 }
@@ -282,7 +285,8 @@ header nav ul li a:hover::after {
 }
 
 .slide-right-box {
-  width: 10vw;
+  transform: translateX(20%);
+  width: 25vw;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -342,7 +346,7 @@ header nav ul li a:hover::after {
 }
 
 .works-wrapper {
-  width: 90%;
+  width: 60%;
   max-width: 1300px;
   display: block;
   margin: 0 auto;
@@ -440,7 +444,7 @@ header nav ul li a:hover::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 85vh; 
 }
 
 .goods-wrapper {
@@ -451,6 +455,7 @@ header nav ul li a:hover::after {
 }
 
 .goods-header {
+  transform: translateY(-100px);
   text-align: center;
   margin-bottom: 40px;
 }
@@ -472,7 +477,9 @@ header nav ul li a:hover::after {
 .goods-container {
   width: 100%;
   overflow-x: auto !important; 
+  overflow-y: hidden !important;
   padding: 20px 0;
+  -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none; 
   scrollbar-width: none; 
 }
@@ -491,7 +498,7 @@ header nav ul li a:hover::after {
 }
 
 .goods-item {
-  width: 240px !important; 
+  width: 280px !important; 
   flex-shrink: 0 !important; 
   background:#252525;
   border: 1px solid #222;

@@ -2,7 +2,7 @@
    [JS] ANNETIQUE STUDIO 통합 인터랙션 로직
 -------------------------------------------------- */
 
-/* 1. 첫 번째 섹션: 가로 무한 슬라이더 및 재생/정지 제어 */
+// 1. 첫 번째 섹션: 가로 무한 슬라이더 및 재생/정지 제어
 let currentX = 0;
 const totalSlides = 3;
 const xSlider = document.getElementById('xSlider');
@@ -60,11 +60,19 @@ if (slideAutoBtn) {
   });
 }
 
-/* 2. 네 번째 섹션: 굿즈 자동 스크롤 제어 */
+
+// 2. 네 번째 섹션: 가로 드래그/마우스 휠 스크롤 전환 로직
 const goodsContainer = document.querySelector('.goods-container');
 const goodsList = document.querySelector('.goods-list');
 
 if (goodsContainer && goodsList) {
+  // [A] 마우스 휠 세로 -> 가로 전환
+  goodsContainer.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    goodsContainer.scrollLeft += e.deltaY;
+  }, { passive: false });
+
+  // [B] 자동 흐름 제어 (마우스 오버 시 일시정지)
   let scrollSpeed = 1; 
   let animationFrameId = null;
   let isHovered = false;
@@ -72,7 +80,6 @@ if (goodsContainer && goodsList) {
   function autoScroll() {
     if (!isHovered) {
       goodsContainer.scrollLeft += scrollSpeed;
-
       if (goodsContainer.scrollLeft >= (goodsContainer.scrollWidth - goodsContainer.clientWidth)) {
         goodsContainer.scrollLeft = 0;
       }
@@ -80,21 +87,16 @@ if (goodsContainer && goodsList) {
     animationFrameId = requestAnimationFrame(autoScroll);
   }
 
-  goodsContainer.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
-
-  goodsContainer.addEventListener('mouseleave', () => {
-    isHovered = false;
-  });
-
+  goodsContainer.addEventListener('mouseenter', () => { isHovered = true; });
+  goodsContainer.addEventListener('mouseleave', () => { isHovered = false; });
   autoScroll();
 }
 
-/* 3. 전체 영역: 우측 미니멀 숫자 내비게이션 & 상단 프로그레스 바 제어 */
+
+// 3. 전체 영역: 우측 미니멀 숫자 내비게이션 & 상단 프로그레스 바 제어
+const mainWrapper = document.querySelector('.main-wrapper'); 
 const dots = document.querySelectorAll('.section-nav .dot');
 const sections = document.querySelectorAll('.outer-section');
-const mainWrapper = document.querySelector('.main-wrapper'); 
 
 if (dots.length > 0 && sections.length > 0 && mainWrapper) {
   
@@ -116,7 +118,6 @@ if (dots.length > 0 && sections.length > 0 && mainWrapper) {
     const wrapperHeight = mainWrapper.clientHeight;
     const totalScrollHeight = mainWrapper.scrollHeight - wrapperHeight;
 
-    // 상단 얇은 바 퍼센트 연산
     const scrollPercent = (scrollTop / totalScrollHeight) * 100;
     document.documentElement.style.setProperty('--scroll-progress', `${scrollPercent}%`);
 
@@ -135,14 +136,13 @@ if (dots.length > 0 && sections.length > 0 && mainWrapper) {
   });
 }
 
-/* 4. 전체 영역: 마우스 팔로우 커스텀 커서 제어 (순수 반짝이 버전) */
+
+// 4. 전체 영역: 마우스 팔로우 커스텀 커서 제어
 const customCursor = document.querySelector('.custom-cursor');
 
 if (customCursor) {
-  // 동그라미 대신 하얀색 반짝이 모양 주입
   customCursor.innerHTML = '✨';
 
-  // 1) 마우스 실시간 좌표 추적
   window.addEventListener('mousemove', (e) => {
     const mouseX = e.clientX;
     const mouseY = e.clientY;
@@ -151,7 +151,6 @@ if (customCursor) {
     customCursor.style.top = `${mouseY}px`;
   });
 
-  // 2) 클릭 가능한 요소에 마우스가 올라가면 반짝이가 커지도록 클래스 추가
   const interactiveElements = document.querySelectorAll('a, button, .goods-item, .grid-item, .dot');
   
   interactiveElements.forEach(elem => {
