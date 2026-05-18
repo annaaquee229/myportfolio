@@ -234,7 +234,7 @@ header nav ul li a:hover::after {
 /* 공중 고정 타이틀 */
 .flow-fixed-title {
   position: sticky;
-  top: 15%;              
+  top: 10%;              
   left: 0;
   width: fit-content;
   height: 0;             
@@ -335,24 +335,31 @@ header nav ul li a:hover::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 0;
   height: auto;
-  min-height: 100vh;
+  min-width: 100vh;
+  padding: 120px 0;
 }
 
 .works-wrapper {
   width: 90%;
   max-width: 1300px;
+  display: block;
+  margin: 0 auto;
+ position: relative;
+
 }
 
 .section-header {
-  margin-bottom: 40px;
-  color: #fff;
+  text-align: center;
+  margin-top: 7%;
+  margin-bottom: 4%;
 }
 
 .section-header h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
+font-size: clamp(2rem, 5vw, 3.2rem); 
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #fff;
   margin-bottom: 10px;
 }
 
@@ -362,16 +369,20 @@ header nav ul li a:hover::after {
 }
 
 .works-grid {
+ 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   list-style: none;
+  margin-top: 150px;
+  width: 100%;
+  margin: 150px auto 0 auto;
 }
 
 .grid-item {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: #fefefe;
   aspect-ratio: 1 / 1;
 }
 
@@ -387,7 +398,7 @@ header nav ul li a:hover::after {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.4); /* 평소 어두운 수치 고정 */
-  transition: all 0.5s ease; /* 안나 님의 기존 부드러운 전환 속도 */
+  transition: all 0.5s ease; /*기존 부드러운 전환 속도 */
 }
 
 /* 2. 이미지 호버 상태: 밝아지면서 살짝 확대 */
@@ -402,7 +413,7 @@ header nav ul li a:hover::after {
   bottom: 0; /* 💡 아래서 올라오는 게 아니라 제자리에 고정 */
   left: 0;
   width: 100%;
-  padding: 20px;
+  padding: 50px;
   box-sizing: border-box;
   
   /* 💡 보내주신 원본과 완전히 똑같은 은은한 그라데이션 */
@@ -424,6 +435,17 @@ header nav ul li a:hover::after {
 .grid-item:hover .info-overlay {
   opacity: 1; /* 💡 선명해짐 */
   transform: translateY(0); /* 💡 부드럽게 위로 살짝 올라오며 안착 */
+}
+
+.info-overlay h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+}
+.info-overlay p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* [네 번째 섹션] Contact */
