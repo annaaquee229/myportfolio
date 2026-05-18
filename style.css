@@ -332,8 +332,8 @@ header nav ul li a:hover::after {
 .gif-ticker-banner {
   width: 100%;
   height: 70px;            
-  background-color: #151515;  /* GIF 배경이 간혹 투명할 때 뒤를 받쳐줄 묵직한 베이스 톤 */
-  
+  background-color: #f383a7;  /* GIF 배경이 간혹 투명할 때 뒤를 받쳐줄 묵직한 베이스 톤 */
+
   /* ⭐️ GIF 파일을 불러와서 가로 방향(X축)으로만 무한 복사 반복 */
   background-image: url('image/kim01.gif'); /* 실제 가지고 계신 GIF 파일명으로 매칭해 주세요! */
   background-repeat: repeat-x; /* 세로 분신을 막고, 가로로만 끝없이 이어지게 고정 */
@@ -345,7 +345,7 @@ header nav ul li a:hover::after {
   /* scroll-snap 환경에서 레이아웃이 튕기거나 밀리지 않도록 잡아주는 안전장치 */
   position: relative;
   z-index: 10;
-  transform: translateY(-70px);
+  transform: translateY(-71px);
   
   /* 두 번째 섹션(#151515)과 세 번째 섹션(#2b2b2b)의 경계를 고급스럽게 다듬어주는 미세한 선 처리 */
   border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -477,20 +477,150 @@ font-size: clamp(2rem, 5vw, 3.2rem);
 }
 
 /* [네 번째 섹션] Contact */
-.section-contact {
-  background: #fff;
+/* --------------------------------------------------
+   [네 번째 섹션] 240px 상품 가로 슬라이더 레이아웃
+-------------------------------------------------- */
+.section-goods {
+  background: #252525;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100vh; 
 }
 
-.contact-title {
-  font-size: 4rem;
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: #000;
+.goods-wrapper {
+  width: 100%; 
+  max-width: 100%;
+  padding: 0 5%; 
+  position: relative;
 }
+
+.goods-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.goods-header h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.goods-header p {
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+/* 💡 [터널 박스] 가로 넘침 허용 및 스크롤바 클린 삭제 */
+.goods-container {
+  width: 100%;
+  overflow-x: auto !important; 
+  padding: 20px 0;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+.goods-container::-webkit-scrollbar {
+  display: none; 
+}
+
+/* 💡 [기차 본체] 꼬여있던 복수 명칭을 하나로 정리하고 완벽 가로 정렬 */
+.goods-list {
+  display: flex !important; 
+  flex-direction: row !important;
+  gap: 25px; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: max-content; /* 💡 20개 상품 길이만큼 가로 틀이 무한히 늘어나게 강제 */
+}
+
+/* 💡 [상품 카드 개별] 240px 압축 제어 칼고정 */
+.goods-item {
+  width: 240px !important; 
+  flex-shrink: 0 !important; 
+  background:#252525;
+  border: 1px solid #222;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+  cursor: pointer;
+}
+
+.goods-item:hover {
+  transform: translateY(-5px);
+  border-color: #444;
+}
+
+/* 1:1 정사각형 이미지 박스 */
+.goods-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #252525;
+}
+
+.goods-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.goods-item:hover .goods-img-box img {
+  transform: scale(1.05);
+}
+
+/* 텍스트 정보 */
+.goods-info {
+  padding: 18px 15px;
+  text-align: left; /* 💡 텍스트가 중앙 정렬되지 않도록 왼쪽 정렬 명시 */
+  /* 💡 평소에는 투명도를 0으로 만들고 살짝 아래(10px)로 내려서 숨겨둡니다 */
+  opacity: 0;
+  transform: translateY(10px);
+  
+  /* 💡 나타날 때 부드럽게 애니메이션이 먹히도록 설정 */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* --------------------------------------------------
+   [네 번째 섹션] 상품 카드에 호버했을 때 (정보 나타남)
+-------------------------------------------------- */
+/* 💡 개별 상품 카드(.goods-item)에 마우스가 올라가면, 내부의 정보(.goods-info)를 원래 위치로 올리며 선명하게 만듭니다 */
+.goods-item:hover .goods-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.goods-info .brand {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ff3366;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.goods-info .title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.goods-info .price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
 
 footer {
   width: 100%;
@@ -554,3 +684,5 @@ footer {
   .slide-right-box h3 { font-size: 1.2rem; margin-bottom: 5px; }
   .slide-right-box p { font-size: 0.85rem; text-align: center; }
 }
+
+
