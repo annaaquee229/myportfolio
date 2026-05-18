@@ -327,17 +327,44 @@ header nav ul li a:hover::after {
   word-break: keep-all;    /* 한글 단어가 지저분하게 쪼개져 내려가지 않게 방어 */
 }
 
+/* 배너 띠 */
+
+.gif-ticker-banner {
+  width: 100%;
+  height: 70px;            
+  background-color: #151515;  /* GIF 배경이 간혹 투명할 때 뒤를 받쳐줄 묵직한 베이스 톤 */
+  
+  /* ⭐️ GIF 파일을 불러와서 가로 방향(X축)으로만 무한 복사 반복 */
+  background-image: url('image/kim01.gif'); /* 실제 가지고 계신 GIF 파일명으로 매칭해 주세요! */
+  background-repeat: repeat-x; /* 세로 분신을 막고, 가로로만 끝없이 이어지게 고정 */
+  background-position: center center; /* 띠의 정중앙에 GIF 중심이 오도록 배치 */
+  
+  
+  background-size: auto 100%;
+  
+  /* scroll-snap 환경에서 레이아웃이 튕기거나 밀리지 않도록 잡아주는 안전장치 */
+  position: relative;
+  z-index: 10;
+  transform: translateY(-70px);
+  
+  /* 두 번째 섹션(#151515)과 세 번째 섹션(#2b2b2b)의 경계를 고급스럽게 다듬어주는 미세한 선 처리 */
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+
 /* --------------------------------------------------
    [세 번째 섹션] 비대칭 스토리 그리드 (안나 님 픽 스타일 적용)
 -------------------------------------------------- */
 .section-grid {
   background: #2b2b2b;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: auto;
   min-width: 100vh;
-  padding: 120px 0;
+  padding: 0 0 120px 0;
 }
 
 .works-wrapper {
@@ -346,6 +373,7 @@ header nav ul li a:hover::after {
   display: block;
   margin: 0 auto;
  position: relative;
+ padding-top: 80px;
 
 }
 
