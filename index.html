@@ -7,16 +7,37 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="custom-cursor"></div>
 
-<nav class="section-nav">
+  <nav class="section-nav">
     <ul>
-      <li><a href="#section-x" class="dot active"><span class="tool-tip">HOME</span></a></li>
-      <li><a href="#section-story" class="dot"><span class="tool-tip">STORY</span></a></li>
-      <li><a href="#section-grid" class="dot"><span class="tool-tip">WORKS</span></a></li>
-      <li><a href="#section-goods" class="dot"><span class="tool-tip">GOODS</span></a></li>
+      <li>
+        <a href="#section-x" class="dot active">
+          <span class="line"></span>
+          <span class="nav-text">HOME</span>
+        </a>
+      </li>
+      <li>
+        <a href="#section-story" class="dot">
+          <span class="line"></span>
+          <span class="nav-text">STORY</span>
+        </a>
+      </li>
+      <li>
+        <a href="#section-grid" class="dot">
+          <span class="line"></span>
+          <span class="nav-text">WORKS</span>
+        </a>
+      </li>
+      <li>
+        <a href="#section-goods" class="dot">
+          <span class="line"></span>
+          <span class="nav-text">GOODS</span>
+        </a>
+      </li>
     </ul>
   </nav>
-  
+
   <header>
     <div class="logo">ANNETIQUE STUDIO</div>
     <nav>
@@ -32,7 +53,7 @@
 
   <div class="main-wrapper" id="outerContainer">
     
-    <section class="outer-section section-x">
+    <section class="outer-section section-x" id="section-x">
       <div class="common-slider-nav">
         <a href="works.html" id="dynamicBtn" class="view-btn">PROJECT VIEW</a>
         <div class="x-nav-container">
@@ -99,8 +120,7 @@
       </div>
     </section>
 
-    <section class="outer-section section-vertical-flow">
-      
+    <section class="outer-section section-vertical-flow" id="section-story">
       <div class="flow-fixed-title">
         <span class="sub-title">CONCEPT ARCHIVE</span>
         <h2 class="main-title">VISUAL MOOD</h2>
@@ -162,7 +182,7 @@
       </div>
     </section>
 
-    <section class="outer-section section-grid">
+    <section class="outer-section section-grid" id="section-grid">
       <div class="gif-ticker-banner"></div>
       <div class="works-wrapper">
         <div class="section-header">
@@ -210,9 +230,8 @@
       </div>
     </section>
 
-<section class="outer-section section-goods">
+    <section class="outer-section section-goods" id="section-goods">
       <div class="goods-wrapper">
-        
         <div class="goods-header">
           <h2>ANNETIQUE GOODS</h2>
           <p>디자인 굿즈 라인업</p>
@@ -220,7 +239,6 @@
 
         <div class="goods-container">
           <ul class="goods-list">
-            
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list001.png" alt="goods 1"></div>
               <div class="goods-info">
@@ -229,7 +247,6 @@
                 <p class="price">12,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list002.png" alt="goods 2"></div>
               <div class="goods-info">
@@ -238,7 +255,6 @@
                 <p class="price">24,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list003.png" alt="goods"></div>
               <div class="goods-info">
@@ -247,7 +263,6 @@
                 <p class="price">18,500원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list004.png" alt="goods"></div>
               <div class="goods-info">
@@ -256,7 +271,6 @@
                 <p class="price">5,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list005.png" alt="goods"></div>
               <div class="goods-info">
@@ -265,7 +279,6 @@
                 <p class="price">15,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list006.png" alt="goods"></div>
               <div class="goods-info">
@@ -274,7 +287,6 @@
                 <p class="price">22,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list007.png" alt="goods"></div>
               <div class="goods-info">
@@ -283,7 +295,6 @@
                 <p class="price">28,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list008.png" alt="goods"></div>
               <div class="goods-info">
@@ -292,7 +303,6 @@
                 <p class="price">10,500원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list009.png" alt="goods"></div>
               <div class="goods-info">
@@ -301,7 +311,6 @@
                 <p class="price">8,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list010.png" alt="goods"></div>
               <div class="goods-info">
@@ -310,7 +319,6 @@
                 <p class="price">13,000원</p>
               </div>
             </li>
-
             <li class="goods-item">
               <div class="goods-img-box"><img src="image/goods/list020.png" alt="goods"></div>
               <div class="goods-info">
@@ -319,13 +327,10 @@
                 <p class="price">4,500원</p>
               </div>
             </li>
-
-          </ul> </div>
-
+          </ul>
+        </div>
       </div>
     </section>
-
-
 
     <footer>
       <div class="footer-logo">ANNETIQUE STUDIO</div>

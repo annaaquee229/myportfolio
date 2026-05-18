@@ -91,23 +91,18 @@ if (goodsContainer && goodsList) {
   autoScroll();
 }
 
-/* 3. 전체 영역: 우측 세로 도트 네비게이션 연동 (자석 스크롤 완벽 대응 버전) */
+/* 3. 전체 영역: 우측 미니멀 숫자 내비게이션 & 상단 프로그레스 바 제어 */
 const dots = document.querySelectorAll('.section-nav .dot');
 const sections = document.querySelectorAll('.outer-section');
 const mainWrapper = document.querySelector('.main-wrapper'); 
 
 if (dots.length > 0 && sections.length > 0 && mainWrapper) {
   
-  // 🎯 도트 클릭 시 자석 스크롤(`.main-wrapper`)의 scrollTop을 직접 연산해서 강제 이동
   dots.forEach((dot, index) => {
     dot.addEventListener('click', (e) => {
       e.preventDefault();
-      
-      // 안나 님의 실제 섹션들 중 클릭한 순서(index)와 맞는 섹션을 타겟팅합니다.
       const targetSection = sections[index];
-      
       if (targetSection) {
-        // 자석 스크롤 틀 내부에서 해당 섹션이 위치한 절대 높이값으로 부드럽게 이동시킵니다.
         mainWrapper.scrollTo({
           top: targetSection.offsetTop,
           behavior: 'smooth'
@@ -116,24 +111,55 @@ if (dots.length > 0 && sections.length > 0 && mainWrapper) {
     });
   });
 
-  // 🎯 스크롤 위치 감지해서 우측 도트에 active 불 켜기
   mainWrapper.addEventListener('scroll', () => {
-    let currentSectionIndex = 0;
     const scrollTop = mainWrapper.scrollTop;
     const wrapperHeight = mainWrapper.clientHeight;
+    const totalScrollHeight = mainWrapper.scrollHeight - wrapperHeight;
 
+    // 상단 얇은 바 퍼센트 연산
+    const scrollPercent = (scrollTop / totalScrollHeight) * 100;
+    document.documentElement.style.setProperty('--scroll-progress', `${scrollPercent}%`);
+
+    let currentSectionIndex = 0;
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
-      // 섹션 영역에 화면의 절반 이상이 들어오면 도트 활성화
       if (scrollTop >= sectionTop - wrapperHeight / 2) {
         currentSectionIndex = index;
       }
     });
 
-    // 불빛 교체
     dots.forEach(dot => dot.classList.remove('active'));
     if (dots[currentSectionIndex]) {
       dots[currentSectionIndex].classList.add('active');
     }
+  });
+}
+
+/* 4. 전체 영역: 마우스 팔로우 커스텀 커서 제어 (순수 반짝이 버전) */
+const customCursor = document.querySelector('.custom-cursor');
+
+if (customCursor) {
+  // 동그라미 대신 하얀색 반짝이 모양 주입
+  customCursor.innerHTML = '✨';
+
+  // 1) 마우스 실시간 좌표 추적
+  window.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    
+    customCursor.style.left = `${mouseX}px`;
+    customCursor.style.top = `${mouseY}px`;
+  });
+
+  // 2) 클릭 가능한 요소에 마우스가 올라가면 반짝이가 커지도록 클래스 추가
+  const interactiveElements = document.querySelectorAll('a, button, .goods-item, .grid-item, .dot');
+  
+  interactiveElements.forEach(elem => {
+    elem.addEventListener('mouseenter', () => {
+      customCursor.classList.add('hover');
+    });
+    elem.addEventListener('mouseleave', () => {
+      customCursor.classList.remove('hover');
+    });
   });
 }

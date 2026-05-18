@@ -83,9 +83,7 @@ header nav ul li a:hover::after {
   position: relative;
 }
 
-/* --------------------------------------------------
-   [첫 번째 섹션] 가로 슬라이더 (안나 님 오리지널 스타일 완전 고정)
--------------------------------------------------- */
+/* [첫 번째 섹션] 가로 슬라이더 */
 .section-x {
   background: #eee;
   overflow: hidden;
@@ -222,16 +220,13 @@ header nav ul li a:hover::after {
   transition: transform 0.5s;
 }
 
-/* --------------------------------------------------
-   ✨ [두 번째 섹션] 센터 세로 이미지 + 우측 텍스트 정렬 레이아웃
--------------------------------------------------- */
+/* [두 번째 섹션] 세로 이미지 flow */
 .section-vertical-flow {
   height: auto;
   position: relative;
-  background: #F383A7; /* 김샬롯배경이미지색상 */
+  background: #F383A7; 
 }
 
-/* 공중 고정 타이틀 */
 .flow-fixed-title {
   position: sticky;
   top: 10%;              
@@ -261,35 +256,31 @@ header nav ul li a:hover::after {
   color: #fff;
 }
 
-/* 개별 슬라이더 구역 정렬 (수평 정렬을 위해 플렉스 형태 부여) */
 .flow-slide {
   width: 100%;
   height: 100vh;
   scroll-snap-align: start;
   display: flex;
-  justify-content: center; /* 가로 중심축 기준 고정 */
+  justify-content: center; 
   align-items: center;
   position: relative;
   padding: 0 10%;
   gap: 5%;
 }
 
-/* 💡 [센터 세로 이미지] 규격 정의 */
 .slide-center-img {
-  width: 32vw;             /* 화면 비율에 맞춘 최적화 가로 사이즈 */
-  height: 65vh;            /* 세로로 긴 감각적인 포트폴리오 창 비율 */
+  width: 32vw;             
+  height: 65vh;            
   overflow: hidden;
-
   background: #F383A7;
 }
 
 .slide-center-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* 이미지가 구겨지지 않고 창에 꽉 들어차게 컷 */
+  object-fit: cover;       
 }
 
-/* 💡 [우측 설명 텍스트 상자] 규격 정의 */
 .slide-right-box {
   width: 10vw;
   color: #fff;
@@ -299,7 +290,6 @@ header nav ul li a:hover::after {
   text-align: left;
 }
 
-/* 대형 카운팅 숫자 */
 .slide-right-box .num {
   font-size: 4rem;
   font-weight: 900;
@@ -309,7 +299,6 @@ header nav ul li a:hover::after {
   font-family: 'Arial', sans-serif;
 }
 
-/* 설명창 메인 소제목 */
 .slide-right-box h3 {
   font-size: 1.6rem;
   font-weight: 700;
@@ -318,45 +307,30 @@ header nav ul li a:hover::after {
   color: #fff;
 }
 
-/* 설명창 본문 내용 */
 .slide-right-box p {
   font-size: 0.95rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.7);
   font-weight: 300;
-  word-break: keep-all;    /* 한글 단어가 지저분하게 쪼개져 내려가지 않게 방어 */
+  word-break: keep-all;    
 }
-
-/* 배너 띠 */
 
 .gif-ticker-banner {
   width: 100%;
   height: 70px;            
-  background-color: #f383a7;  /* GIF 배경이 간혹 투명할 때 뒤를 받쳐줄 묵직한 베이스 톤 */
-
-  /* ⭐️ GIF 파일을 불러와서 가로 방향(X축)으로만 무한 복사 반복 */
-  background-image: url('image/kim01.gif'); /* 실제 가지고 계신 GIF 파일명으로 매칭해 주세요! */
-  background-repeat: repeat-x; /* 세로 분신을 막고, 가로로만 끝없이 이어지게 고정 */
-  background-position: center center; /* 띠의 정중앙에 GIF 중심이 오도록 배치 */
-  
-  
+  background-color: #f383a7;  
+  background-image: url('image/kim01.gif'); 
+  background-repeat: repeat-x; 
+  background-position: center center; 
   background-size: auto 100%;
-  
-  /* scroll-snap 환경에서 레이아웃이 튕기거나 밀리지 않도록 잡아주는 안전장치 */
   position: relative;
   z-index: 10;
   transform: translateY(-71px);
-  
-  /* 두 번째 섹션(#151515)과 세 번째 섹션(#2b2b2b)의 경계를 고급스럽게 다듬어주는 미세한 선 처리 */
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-
-
-/* --------------------------------------------------
-   [세 번째 섹션] 비대칭 스토리 그리드 (안나 님 픽 스타일 적용)
--------------------------------------------------- */
+/* [세 번째 섹션] 비대칭 스토리 그리드 */
 .section-grid {
   background: #2b2b2b;
   display: flex;
@@ -372,9 +346,8 @@ header nav ul li a:hover::after {
   max-width: 1300px;
   display: block;
   margin: 0 auto;
- position: relative;
- padding-top: 80px;
-
+  position: relative;
+  padding-top: 80px;
 }
 
 .section-header {
@@ -384,7 +357,7 @@ header nav ul li a:hover::after {
 }
 
 .section-header h2 {
-font-size: clamp(2rem, 5vw, 3.2rem); 
+  font-size: clamp(2rem, 5vw, 3.2rem); 
   font-weight: 900;
   letter-spacing: -1px;
   color: #fff;
@@ -397,12 +370,10 @@ font-size: clamp(2rem, 5vw, 3.2rem);
 }
 
 .works-grid {
- 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   list-style: none;
-  margin-top: 150px;
   width: 100%;
   margin: 150px auto 0 auto;
 }
@@ -419,50 +390,36 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   aspect-ratio: 21 / 9;
 }
 
-/* 평소에 이미지 어둡게 처리 (오파시티 0.5)*/
-/* 1. 이미지 기본 상태: 묵직하게 어둡게 처리 */
 .grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.4); /* 평소 어두운 수치 고정 */
-  transition: all 0.5s ease; /*기존 부드러운 전환 속도 */
+  filter: brightness(0.4); 
+  transition: all 0.5s ease; 
 }
 
-/* 2. 이미지 호버 상태: 밝아지면서 살짝 확대 */
 .grid-item:hover img {
-  filter: brightness(1); /* 마우스 올리면 원래 밝기로 */
-  transform: scale(1.03); /* 기존 스케일 수치 보존 */
+  filter: brightness(1); 
+  transform: scale(1.03); 
 }
 
-/* 3. 그라데이션 정보 바 기본 상태: 제자리에 숨겨두기 */
 .info-overlay {
   position: absolute;
-  bottom: 0; /* 💡 아래서 올라오는 게 아니라 제자리에 고정 */
+  bottom: 0; 
   left: 0;
   width: 100%;
   padding: 50px;
   box-sizing: border-box;
-  
-  /* 💡 보내주신 원본과 완전히 똑같은 은은한 그라데이션 */
-  background: linear-gradient(to top,
-  rgba(0, 0, 0, 0.85) 0%,     /* 맨 아래 글자 배경은 원래대로 묵직하게 잡아주고 */
-    rgba(0, 0, 0, 0.4) 50%,     /* 중간 지점(50%)까지도 검은 그림자를 은은하게 유지했다가 */
-    rgba(0, 0, 0, 0.1) 80%,     /* 위쪽(80%)까지 부드럽게 잔상을 이어가며 */
-    transparent 100%            /* 맨 꼭대기(100%)에서 투명하게 싹 풀리도록 늘렸습니다 */
-  ); 
-  
-  /* 💡 살짝 아래 숨어있다가 부드럽게 나타나는 페이드 효과 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 80%, transparent 100%); 
   opacity: 0; 
   transform: translateY(10px); 
   transition: 0.4s; 
   pointer-events: none;
 }
 
-/* 4. 정보 바 호버 상태: 흐릿하게 나타나며 제자리 안착 */
 .grid-item:hover .info-overlay {
-  opacity: 1; /* 💡 선명해짐 */
-  transform: translateY(0); /* 💡 부드럽게 위로 살짝 올라오며 안착 */
+  opacity: 1; 
+  transform: translateY(0); 
 }
 
 .info-overlay h3 {
@@ -476,10 +433,7 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* [네 번째 섹션] Contact */
-/* --------------------------------------------------
-   [네 번째 섹션] 240px 상품 가로 슬라이더 레이아웃
--------------------------------------------------- */
+/* [네 번째 섹션] 240px 상품 가로 무한 스크롤러 핵심 스타일 */
 .section-goods {
   background: #252525;
   display: flex;
@@ -515,7 +469,6 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   letter-spacing: 1px;
 }
 
-/* 💡 [터널 박스] 가로 넘침 허용 및 스크롤바 클린 삭제 */
 .goods-container {
   width: 100%;
   overflow-x: auto !important; 
@@ -527,7 +480,6 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   display: none; 
 }
 
-/* 💡 [기차 본체] 꼬여있던 복수 명칭을 하나로 정리하고 완벽 가로 정렬 */
 .goods-list {
   display: flex !important; 
   flex-direction: row !important;
@@ -535,10 +487,9 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   list-style: none;
   padding: 0;
   margin: 0;
-  width: max-content; /* 💡 20개 상품 길이만큼 가로 틀이 무한히 늘어나게 강제 */
+  width: max-content !important; /* 💡 11개 상품이 끝없이 가로로 뻗어나가도록 기차선 고정 */
 }
 
-/* 💡 [상품 카드 개별] 240px 압축 제어 칼고정 */
 .goods-item {
   width: 240px !important; 
   flex-shrink: 0 !important; 
@@ -553,7 +504,6 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   border-color: #444;
 }
 
-/* 1:1 정사각형 이미지 박스 */
 .goods-img-box {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -572,22 +522,14 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   transform: scale(1.05);
 }
 
-/* 텍스트 정보 */
 .goods-info {
   padding: 18px 15px;
-  text-align: left; /* 💡 텍스트가 중앙 정렬되지 않도록 왼쪽 정렬 명시 */
-  /* 💡 평소에는 투명도를 0으로 만들고 살짝 아래(10px)로 내려서 숨겨둡니다 */
+  text-align: left; 
   opacity: 0;
   transform: translateY(10px);
-  
-  /* 💡 나타날 때 부드럽게 애니메이션이 먹히도록 설정 */
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* --------------------------------------------------
-   [네 번째 섹션] 상품 카드에 호버했을 때 (정보 나타남)
--------------------------------------------------- */
-/* 💡 개별 상품 카드(.goods-item)에 마우스가 올라가면, 내부의 정보(.goods-info)를 원래 위치로 올리며 선명하게 만듭니다 */
 .goods-item:hover .goods-info {
   opacity: 1;
   transform: translateY(0);
@@ -621,7 +563,6 @@ font-size: clamp(2rem, 5vw, 3.2rem);
   color: #fff;
 }
 
-
 footer {
   width: 100%;
   height: 150px;
@@ -634,74 +575,118 @@ footer {
   scroll-snap-align: end;
 }
 
-/* ==================================================
-   [전체 영역] 우측 세로 고정 도트 네비게이션
-================================================= */
+/* [미니멀 아카이브 v2] 상단 슬림 바 & 라인-텍스트 내비 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--scroll-progress, 0%);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 10001;
+  transition: width 0.1s ease-out;
+}
+
 .section-nav {
   position: fixed;
   right: 40px;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10000; /* 헤더(1000)보다 높게 잡아서 항상 최상단 노출 */
+  z-index: 10000;
 }
 
 .section-nav ul {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px; 
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .section-nav .dot {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3); /* 평소엔 은은하게 투명한 흰색 점 */
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  position: relative;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-decoration: none;
+  height: 20px;
 }
 
-/* 활성화(active)되거나 마우스를 올렸을 때 점 포인트 효과 */
-.section-nav .dot.active,
-.section-nav .dot:hover {
-  background: #ff3366; /* 안나 님 취향에 맞춘 트렌디한 핑크 포인트 */
-  border-color: #ff3366;
-  transform: scale(1.3);
+.section-nav .line {
+  width: 15px; 
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2); 
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 글자 툴팁 디자인 */
-.section-nav .tool-tip {
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 0.75rem;
+.section-nav .nav-text {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.7rem;
   font-weight: 700;
-  border-radius: 3px;
+  color: rgba(255, 255, 255, 0); 
+  letter-spacing: 1px;
+  margin-left: 0;
   white-space: nowrap;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  transform: translateX(10px); 
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.section-nav .dot:hover .tool-tip {
+.section-nav .dot.active .line,
+.section-nav .dot:hover .line {
+  width: 35px; 
+  background: rgba(255, 255, 255, 0.8); 
+}
+
+.section-nav .dot.active .nav-text,
+.section-nav .dot:hover .nav-text {
+  color: rgba(255, 255, 255, 0.9); 
   opacity: 1;
+  margin-left: 10px; 
+  transform: translateX(0); 
+}
+
+/* [고급 인터랙션] 마우스 팔로우 커스텀 커서 (순수 하얀색 반짝이) */
+body {
+  cursor: default; 
+}
+
+.custom-cursor {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  pointer-events: none; /* 커서가 다른 요소를 클릭하는 걸 방해하지 않도록 설정 */
+  z-index: 99999; 
+  
+  /* 부드러운 위치 추적 및 크기 변경 애니메이션 */
+  transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translate(-50%, -50%) scale(1); 
+  
+  display: none; 
+  font-size: 32px; /* 깔끔하고 큼직한 반짝이 크기 설정 */
+  line-height: 1;
+  user-select: none;
+  
+  /* 하얀색 반짝이가 포트폴리오 배경 어디서나 잘 보이도록 은은한 화이트 네온 필터 추가 */
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+}
+
+@media (pointer: fine) {
+  .custom-cursor {
+    display: block;
+  }
+}
+
+/* 링크나 버튼에 마우스를 올렸을 때 더 커지는 효과 */
+.custom-cursor.hover {
+  transform: translate(-50%, -50%) scale(1.4);
+  transition: transform 0.2s ease;
 }
 
 
+/* [미디어 쿼리 - 반응형 분기점 칼매칭] */
 
-
-
-/* --------------------------------------------------
-   [미디어 쿼리 - 반응형 분기점 칼매칭]
--------------------------------------------------- */
 @media (min-width: 1201px) {
   header { padding: 0 10%; }
   .common-slider-nav { left: 10%; }
@@ -713,7 +698,6 @@ footer {
   .common-slider-nav { left: 50px; }
   .content-box { left: 50px; }
   .flow-fixed-title { padding-left: 50px; }
-  
   .slide-center-img { width: 40vw; height: 55vh; }
   .slide-right-box { width: 35vw; }
 }
@@ -733,7 +717,6 @@ footer {
   .works-grid { grid-template-columns: 1fr; }
   .grid-item.item-large { grid-column: span 1; aspect-ratio: 1 / 1; }
   
-  /* 모바일 가독성을 위해 상하 수직 배치로 정렬 스위칭 */
   .flow-fixed-title { padding-left: 20px; top: 10%; }
   .flow-fixed-title .main-title { font-size: 1.8rem; }
   
@@ -749,5 +732,3 @@ footer {
   .slide-right-box h3 { font-size: 1.2rem; margin-bottom: 5px; }
   .slide-right-box p { font-size: 0.85rem; text-align: center; }
 }
-
-
