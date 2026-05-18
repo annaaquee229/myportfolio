@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   [CSS] ANNETIQUE STUDIO - 표준 미디어 쿼리 및 절대 좌표 좌측 고정본
+   [CSS] ANNETIQUE STUDIO - 위치 고정 및 3번째 섹션 스토리 그리드 합본
 -------------------------------------------------- */
 * {
   margin: 0;
@@ -74,13 +74,7 @@ header nav ul li a:hover::after {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
 }
-.inner-scroll-box {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-}
+
 .main-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -92,7 +86,7 @@ header nav ul li a:hover::after {
   position: relative;
 }
 
-/* [섹션 1] 가로 슬라이더 */
+/* [섹션 1] 가로 슬라이더 (안나 님 오리지널 좌측 정렬 스타일) */
 .section-x {
   background: #eee;
   overflow: hidden;
@@ -105,7 +99,6 @@ header nav ul li a:hover::after {
   height: 100%;
 }
 
-/* 400% 대형 Flex 안에서 자식들의 축이 꼬이지 않도록 absolute 기준점 역할만 부여 */
 .x-slide {
   width: 100vw;
   height: 100%;
@@ -125,7 +118,7 @@ header nav ul li a:hover::after {
   z-index: 1;
 }
 
-/* 브라우저의 가로축 연산 오류에 휘말리지 않게 absolute로 띄워 화면 좌측에 고정 */
+/* 텍스트 상자 원래 위치 (왼쪽 중앙 유지) */
 .content-box {
   position: absolute;
   left: 10%;            
@@ -164,7 +157,7 @@ header nav ul li a:hover::after {
   text-align: left;
 }
 
-/* 네비게이션 및 슬라이드 바 위치 */
+/* 네비게이션 및 슬라이드 바 원래 위치 (왼쪽 하단 유지) */
 .common-slider-nav {
   position: absolute;
   bottom: 80px;
@@ -232,7 +225,7 @@ header nav ul li a:hover::after {
   transition: transform 0.5s;
 }
 
-/* [섹션 2] 세로 스냅 */
+/* [섹션 2] 세로 내부 스크롤 스냅 */
 .inner-scroll-box {
   width: 100vw;
   height: 100vh;
@@ -279,12 +272,15 @@ header nav ul li a:hover::after {
   color: #333;
 }
 
-/* [섹션 3] 비대칭 그리드 레이아웃 */
+/* ✨ [복구 및 교정] [섹션 3] 마음에 들어 하셨던 비대칭 스토리 그리드 레이아웃 */
 .section-grid {
   background: #2b2b2b;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 100px 0;
+  height: auto;
+  min-height: 100vh;
 }
 
 .works-wrapper {
@@ -292,10 +288,26 @@ header nav ul li a:hover::after {
   max-width: 1300px;
 }
 
+.section-header {
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
 .works-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr); /* 안정적인 2열 구조 */
+  gap: 30px;
   list-style: none;
 }
 
@@ -306,37 +318,52 @@ header nav ul li a:hover::after {
   aspect-ratio: 1 / 1;
 }
 
-.item-large {
-  grid-column: 3;
-  grid-row: 1 / 3;
-  aspect-ratio: auto;
+/* 마음에 들어 하셨던 가로로 긴 대형 카드 포인트 스타일 */
+.grid-item.item-large {
+  grid-column: span 2;
+  aspect-ratio: 21 / 9;
 }
 
 .grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.4);
-  transition: all 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .grid-item:hover img {
-  filter: brightness(1);
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .info-overlay {
   position: absolute;
-  bottom: -100px;
+  top: 0;
   left: 0;
   width: 100%;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  transition: bottom 0.4s ease;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .grid-item:hover .info-overlay {
-  bottom: 0;
+  opacity: 1;
+}
+
+.info-overlay h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.info-overlay p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
 }
 
 /* [섹션 4] Contact */
@@ -399,26 +426,19 @@ footer {
   transform: scale(1.4);
 }
 
-
-/* --------------------------------------------------
-   [미디어 쿼리 - 초대형 해상도 삭제 및 압축 수정본]
--------------------------------------------------- */
-
-/* 1. 일반 데스크탑 전체 통합 (1201px 이상 해상도 칼매칭) */
+/* 미디어 쿼리 - 오리지널 절대 좌표 좌측 고정 매칭 */
 @media (min-width: 1201px) {
   header { padding: 0 10%; }
   .common-slider-nav { left: 10%; }
   .content-box { left: 10%; }  
 }
 
-/* 2. 태블릿/작은 노트북 (769px ~ 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
   header { padding: 0 50px; }
   .common-slider-nav { left: 50px; }
   .content-box { left: 50px; }
 }
 
-/* 3. 모바일 (768px 이하) */
 @media (max-width: 768px) {
   header { padding: 0 20px; }
   .common-slider-nav { left: 20px; }
@@ -430,4 +450,6 @@ footer {
   .main-title { font-size: 2.2rem; line-height: 1.3; }
   .x-text { padding-left: 10px; }
   .x-text ul li { font-size: 0.95rem; }
+  .works-grid { grid-template-columns: 1fr; } /* 모바일은 1열로 정렬 */
+  .grid-item.item-large { grid-column: span 1; aspect-ratio: 1 / 1; }
 }

@@ -1,8 +1,8 @@
 /* --------------------------------------------------
-   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (창 전환 완벽 수정본)
+   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직
 -------------------------------------------------- */
 
-/* 1. 가로 무한 슬라이더 및 재생/정지 제어 */
+/* 1. 가로 무한 슬라이더 및 재생/정지 제어 (원형 완벽 보존) */
 let currentX = 0;
 const totalSlides = 3;
 const xSlider = document.getElementById('xSlider');
@@ -31,17 +31,14 @@ function moveX() {
 
 function updateSlider() {
   if (xSlider) {
-    /* 데스크탑 세로 스크롤바 우측 튕김 오류를 잡기 위해 부모 크기 기반 % 이동 연산 적용 */
     xSlider.style.transform = `translateX(-${currentX * 25}%)`;
   }
   const realIndex = currentX % totalSlides;
   
-  // 하단 슬라이드 바 이동
   if (xNavBar) {
     xNavBar.style.transform = `translateX(${realIndex * 100}%)`;
   }
   
-  // 💡 [창 전환 완벽 매칭] 슬라이드 테마에 맞춰 매칭된 개별 실물 페이지 파일 주소로 깔끔하게 화면 전환됩니다.
   const links = ["works.html", "concept.html", "skills.html"];
   const texts = ["PROJECT VIEW", "CONCEPT VIEW", "SKILLS VIEW"];
   if (dynamicBtn) {
@@ -50,7 +47,6 @@ function updateSlider() {
   }
 }
 
-// 재생/정지 버튼 이벤트 리스너
 if (slideAutoBtn) {
   slideAutoBtn.addEventListener('click', () => {
     if (isAutoPlay) {
@@ -64,7 +60,7 @@ if (slideAutoBtn) {
   });
 }
 
-/* 2. 세로 스냅 및 도트 인디케이터 로직 */
+/* 2. 세로 스냅 및 도트 인디케이터 로직 (안전 휠 버퍼 탑재) */
 const innerScroll = document.getElementById('innerScroll');
 const scrollDots = document.getElementById('scrollDots');
 const dots = document.querySelectorAll('.dot');
@@ -77,9 +73,14 @@ if (innerScroll) {
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   });
 
+  // 💡 내부 스크롤 박스가 끝에 도달하기 전까지 외부 레이아웃이 급하게 넘어가 버리는 현상을 방어합니다.
   innerScroll.addEventListener('wheel', (e) => {
     const scrollTop = innerScroll.scrollTop;
+    
+    // 첫 슬라이드에서 위로 올릴 때만 부모 스냅 작동 허용
     if (e.deltaY < 0 && scrollTop <= 0) return;
+    
+    // 마지막 내부 슬라이드 바닥에 닿기 전까지는 부모 스냅이 아래로 튀는 것을 강력 차단
     if (e.deltaY > 0 && scrollTop + innerScroll.offsetHeight < innerScroll.scrollHeight - 5) {
       e.stopPropagation();
     }
