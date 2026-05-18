@@ -1,8 +1,8 @@
 /* --------------------------------------------------
-   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직
+   [JS] ANNETIQUE STUDIO 통합 인터랙션 로직 (초경량 정석 버전)
 -------------------------------------------------- */
 
-/* 1. 가로 무한 슬라이더 및 재생/정지 제어 (원형 완벽 보존) */
+/* 1. 첫 번째 섹션: 가로 무한 슬라이더 및 재생/정지 제어 (안나 님 오리지널 원형 완벽 보존) */
 let currentX = 0;
 const totalSlides = 3;
 const xSlider = document.getElementById('xSlider');
@@ -58,54 +58,4 @@ if (slideAutoBtn) {
     }
     isAutoPlay = !isAutoPlay;
   });
-}
-
-/* 2. 세로 스냅 및 도트 인디케이터 로직 (안전 휠 버퍼 탑재) */
-const innerScroll = document.getElementById('innerScroll');
-const scrollDots = document.getElementById('scrollDots');
-const dots = document.querySelectorAll('.dot');
-const outerContainer = document.getElementById('outerContainer');
-const verticalSection = document.getElementById('verticalSection');
-
-if (innerScroll) {
-  innerScroll.addEventListener('scroll', () => {
-    const index = Math.round(innerScroll.scrollTop / innerScroll.offsetHeight);
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-  });
-
-  // 💡 내부 스크롤 박스가 끝에 도달하기 전까지 외부 레이아웃이 급하게 넘어가 버리는 현상을 방어합니다.
-  innerScroll.addEventListener('wheel', (e) => {
-    const scrollTop = innerScroll.scrollTop;
-    
-    // 첫 슬라이드에서 위로 올릴 때만 부모 스냅 작동 허용
-    if (e.deltaY < 0 && scrollTop <= 0) return;
-    
-    // 마지막 내부 슬라이드 바닥에 닿기 전까지는 부모 스냅이 아래로 튀는 것을 강력 차단
-    if (e.deltaY > 0 && scrollTop + innerScroll.offsetHeight < innerScroll.scrollHeight - 5) {
-      e.stopPropagation();
-    }
-  }, { passive: false });
-}
-
-if (outerContainer && verticalSection) {
-  outerContainer.addEventListener('scroll', () => {
-    const vTop = verticalSection.offsetTop;
-    const current = outerContainer.scrollTop;
-    
-    if (current >= vTop - 50 && current < vTop + verticalSection.offsetHeight - 50) {
-      scrollDots.classList.add('visible');
-    } else {
-      scrollDots.classList.remove('visible');
-    }
-  });
-}
-
-/* 3. 도트 클릭 시 부드러운 이동 함수 */
-function scrollToInner(index) {
-  if (innerScroll) {
-    innerScroll.scrollTo({
-      top: index * innerScroll.offsetHeight,
-      behavior: 'smooth'
-    });
-  }
 }

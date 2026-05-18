@@ -1,6 +1,3 @@
-/* --------------------------------------------------
-   [CSS] ANNETIQUE STUDIO - 위치 고정 및 3번째 섹션 스토리 그리드 합본
--------------------------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -66,7 +63,7 @@ header nav ul li a:hover::after {
   width: 100%;
 }
 
-/* 메인 래퍼 및 스냅 */
+/* 메인 스크롤 래퍼 */
 .main-wrapper {
   width: 100%;
   height: 100vh;
@@ -86,7 +83,9 @@ header nav ul li a:hover::after {
   position: relative;
 }
 
-/* [섹션 1] 가로 슬라이더 (안나 님 오리지널 좌측 정렬 스타일) */
+/* --------------------------------------------------
+   [첫 번째 섹션] 가로 슬라이더 (안나 님 오리지널 스타일 완전 고정)
+-------------------------------------------------- */
 .section-x {
   background: #eee;
   overflow: hidden;
@@ -118,7 +117,6 @@ header nav ul li a:hover::after {
   z-index: 1;
 }
 
-/* 텍스트 상자 원래 위치 (왼쪽 중앙 유지) */
 .content-box {
   position: absolute;
   left: 10%;            
@@ -157,7 +155,6 @@ header nav ul li a:hover::after {
   text-align: left;
 }
 
-/* 네비게이션 및 슬라이드 바 원래 위치 (왼쪽 하단 유지) */
 .common-slider-nav {
   position: absolute;
   bottom: 80px;
@@ -225,54 +222,114 @@ header nav ul li a:hover::after {
   transition: transform 0.5s;
 }
 
-/* [섹션 2] 세로 내부 스크롤 스냅 */
-.inner-scroll-box {
-  width: 100vw;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
+/* --------------------------------------------------
+   ✨ [두 번째 섹션] 센터 세로 이미지 + 우측 텍스트 정렬 레이아웃
+-------------------------------------------------- */
+.section-vertical-flow {
+  height: auto;
+  position: relative;
+  background: #F383A7; /* 김샬롯배경이미지색상 */
 }
 
-.inner-scroll-box::-webkit-scrollbar {
-  display: none;
+/* 공중 고정 타이틀 */
+.flow-fixed-title {
+  position: sticky;
+  top: 15%;              
+  left: 0;
+  width: fit-content;
+  height: 0;             
+  z-index: 500;          
+  color: #fff;
+  pointer-events: none;  
+  padding-left: 10%;     
 }
 
-.inner-slide {
+.flow-fixed-title .sub-title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #fff;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.flow-fixed-title .main-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+/* 개별 슬라이더 구역 정렬 (수평 정렬을 위해 플렉스 형태 부여) */
+.flow-slide {
   width: 100%;
   height: 100vh;
   scroll-snap-align: start;
   display: flex;
+  justify-content: center; /* 가로 중심축 기준 고정 */
+  align-items: center;
+  position: relative;
+  padding: 0 10%;
+  gap: 5%;
+}
+
+/* 💡 [센터 세로 이미지] 규격 정의 */
+.slide-center-img {
+  width: 32vw;             /* 화면 비율에 맞춘 최적화 가로 사이즈 */
+  height: 65vh;            /* 세로로 긴 감각적인 포트폴리오 창 비율 */
+  overflow: hidden;
+
+  background: #F383A7;
+}
+
+.slide-center-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* 이미지가 구겨지지 않고 창에 꽉 들어차게 컷 */
+}
+
+/* 💡 [우측 설명 텍스트 상자] 규격 정의 */
+.slide-right-box {
+  width: 10vw;
+  color: #fff;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  font-size: 3rem;
+  text-align: left;
+}
+
+/* 대형 카운팅 숫자 */
+.slide-right-box .num {
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.1);
+  line-height: 1;
+  margin-bottom: 15px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 설명창 메인 소제목 */
+.slide-right-box h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
   color: #fff;
 }
 
-.bg-y1 {
-  background: #f383a7;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* 설명창 본문 내용 */
+.slide-right-box p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  word-break: keep-all;    /* 한글 단어가 지저분하게 쪼개져 내려가지 않게 방어 */
 }
 
-.bg-y2 {
-  background: #f383a7;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.bg-y3 {
-  background: #f383a7;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #333;
-}
-
-/* ✨ [복구 및 교정] [섹션 3] 마음에 들어 하셨던 비대칭 스토리 그리드 레이아웃 */
+/* --------------------------------------------------
+   [세 번째 섹션] 비대칭 스토리 그리드 (안나 님 픽 스타일 적용)
+-------------------------------------------------- */
 .section-grid {
   background: #2b2b2b;
   display: flex;
@@ -306,7 +363,7 @@ header nav ul li a:hover::after {
 
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 안정적인 2열 구조 */
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   list-style: none;
 }
@@ -318,7 +375,6 @@ header nav ul li a:hover::after {
   aspect-ratio: 1 / 1;
 }
 
-/* 마음에 들어 하셨던 가로로 긴 대형 카드 포인트 스타일 */
 .grid-item.item-large {
   grid-column: span 2;
   aspect-ratio: 21 / 9;
@@ -366,7 +422,7 @@ header nav ul li a:hover::after {
   font-size: 0.95rem;
 }
 
-/* [섹션 4] Contact */
+/* [네 번째 섹션] Contact */
 .section-contact {
   background: #fff;
   display: flex;
@@ -382,7 +438,6 @@ header nav ul li a:hover::after {
   color: #000;
 }
 
-/* 푸터 */
 footer {
   width: 100%;
   height: 150px;
@@ -395,38 +450,9 @@ footer {
   scroll-snap-align: end;
 }
 
-/* 도트 인디케이터 */
-.scroll-dots {
-  position: fixed;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  z-index: 9999;
-  opacity: 0;
-  transition: 0.5s;
-}
-
-.scroll-dots.visible {
-  opacity: 1;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #fff;
-  transform: scale(1.4);
-}
-
-/* 미디어 쿼리 - 오리지널 절대 좌표 좌측 고정 매칭 */
+/* --------------------------------------------------
+   [미디어 쿼리 - 반응형 분기점 칼매칭]
+-------------------------------------------------- */
 @media (min-width: 1201px) {
   header { padding: 0 10%; }
   .common-slider-nav { left: 10%; }
@@ -437,6 +463,10 @@ footer {
   header { padding: 0 50px; }
   .common-slider-nav { left: 50px; }
   .content-box { left: 50px; }
+  .flow-fixed-title { padding-left: 50px; }
+  
+  .slide-center-img { width: 40vw; height: 55vh; }
+  .slide-right-box { width: 35vw; }
 }
 
 @media (max-width: 768px) {
@@ -450,6 +480,23 @@ footer {
   .main-title { font-size: 2.2rem; line-height: 1.3; }
   .x-text { padding-left: 10px; }
   .x-text ul li { font-size: 0.95rem; }
-  .works-grid { grid-template-columns: 1fr; } /* 모바일은 1열로 정렬 */
+  
+  .works-grid { grid-template-columns: 1fr; }
   .grid-item.item-large { grid-column: span 1; aspect-ratio: 1 / 1; }
+  
+  /* 모바일 가독성을 위해 상하 수직 배치로 정렬 스위칭 */
+  .flow-fixed-title { padding-left: 20px; top: 10%; }
+  .flow-fixed-title .main-title { font-size: 1.8rem; }
+  
+  .flow-slide { 
+    flex-direction: column; 
+    justify-content: flex-start;
+    padding-top: 140px; 
+    gap: 20px;
+  }
+  .slide-center-img { width: 70vw; height: 40vh; }
+  .slide-right-box { width: 70vw; text-align: center; align-items: center;}
+  .slide-right-box .num { font-size: 2.5rem; margin-bottom: 5px; }
+  .slide-right-box h3 { font-size: 1.2rem; margin-bottom: 5px; }
+  .slide-right-box p { font-size: 0.85rem; text-align: center; }
 }
