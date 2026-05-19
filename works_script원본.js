@@ -1,18 +1,17 @@
-/* --------------------------------------------------
-   [JS] WORKS - 안나 님 기획: 핑크 면 (+) 뱃지 갤러리
--------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('worksGrid');
   const moreBtn = document.getElementById('moreBtn');
   const btnText = document.getElementById('btnText');
 
+  // 모달 관련 DOM 요소 선언
   const modal = document.getElementById('workModal');
   const modalImg = document.getElementById('modalImg');
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
 
-  // 작업물 아카이브 데이터
+  // 1. 실제 작업물 데이터 리스트
+  // 본인의 실제 이미지 경로(예: image/파일명.png)와 원하는 제목, 설명을 입력하세요.
   const myWorks = [
     { img: 'image/goods/list001.png', title: 'PROJECT 01', desc: '웹 디자인 및 퍼블리싱 아카이브' },
     { img: 'image/goods/list002.png', title: 'PROJECT 02', desc: '쇼핑몰 상세페이지 제작' },
@@ -37,82 +36,55 @@ document.addEventListener('DOMContentLoaded', () => {
     { img: 'image/goods/list021.png', title: 'PROJECT 21', desc: 'Creative design archive.' }
   ];
 
-  let currentRowContainer = null;
-
-  myWorks.forEach((work, index) => {
-    if (index % 4 === 0) {
-      currentRowContainer = document.createElement('div');
-      currentRowContainer.className = 'works-row';
-      grid.appendChild(currentRowContainer);
-    }
-
+  // 2. 동적으로 그리드 아이템 생성 및 클릭 이벤트 매핑
+  myWorks.forEach((work) => {
     const li = document.createElement('li');
     li.className = 'grid-item';
-    
-    // 💡 정중앙에 렌더링될 플러스 뱃지 돔 구조 매칭
     li.innerHTML = `
-        <div class="card-aspect-box">
             <img src="${work.img}" alt="${work.title}">
-            <div class="plus-badge">
-              <div class="plus-icon-shape"></div>
+            <div class="info-overlay">
+                <h3>${work.title}</h3>
+                <p>${work.desc}</p>
             </div>
-        </div>
-    `;
+        `;
     
-    li.addEventListener('mouseenter', () => {
-      const parentRow = li.parentElement;
-      li.classList.add('is-active');
-      parentRow.classList.add('has-hover');
-    });
-    
-    li.addEventListener('mouseleave', () => {
-      const parentRow = li.parentElement;
-      li.classList.remove('is-active');
-      parentRow.classList.remove('has-hover');
-    });
-
+    // 리스트 아이템 클릭 시 팝업창 띄우기
     li.addEventListener('click', () => {
-      if (modal) {
-        modalImg.src = work.img;
-        modalTitle.innerText = work.title;
-        modalDesc.innerText = work.desc;
-        modal.classList.add('active');
-      }
+      modalImg.src = work.img;
+      modalTitle.innerText = work.title;
+      modalDesc.innerText = work.desc;
+      modal.classList.add('active');
     });
 
-    currentRowContainer.appendChild(li);
+    grid.appendChild(li);
   });
 
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
+  // 3. 팝업창 닫기 (X 버튼 클릭)
+  modalCloseBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  // 4. 팝업창 닫기 (어두운 배경 영역 클릭)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
       modal.classList.remove('active');
-    });
-  }
+    }
+  });
 
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-  }
-
-  const allRows = grid.querySelectorAll('.works-row');
+  const allItems = document.querySelectorAll('.grid-item');
   let isOpen = false;
 
-  allRows.forEach((row, index) => {
-    if (index >= 2) row.style.display = 'none';
-  });
+  // 5. MORE WORKS 버튼 열고 닫기 제어
+  moreBtn.addEventListener('click', () => {
+    isOpen = !isOpen;
 
-  if (moreBtn) {
-    moreBtn.addEventListener('click', () => {
-      isOpen = !isOpen;
-      allRows.forEach((row, index) => {
-        if (index >= 2) row.style.display = isOpen ? 'flex' : 'none'; 
-      });
-      btnText.innerText = isOpen ? 'LESS WORKS' : 'MORE WORKS';
-      if (!isOpen) window.scrollTo({ top: 300, behavior: 'smooth' });
+    allItems.forEach((item, index) => {
+      if (index >= 9) {
+        item.classList.toggle('show', isOpen);
+      }
     });
-  }
+
+    btnText.innerText = isOpen ? "CLOSE" : "MORE WORKS";
+    moreBtn.querySelector('.material-icons').innerText = isOpen ? "expand_less" : "expand_more";
+  });
 });

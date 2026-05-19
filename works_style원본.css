@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #2b2b2b;
+  /* 스크롤바가 생겨도 레이아웃이 옆으로 밀리지 않게 공간 확보 */
+  scrollbar-gutter: stable;
+  /* 스크롤바 숨기기 (기능은 작동함) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  width: 100%;
+  background-color: #2b2b2b;
+  font-family: 'Pretendard', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 200px;
+  background: rgba(10, 10, 10, 0.2);
+  z-index: 1000;
+}
+
+header .logo {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #000;
+}
+
+header nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.works-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  /* 너무 커지지 않게 조정 */
+  margin: 0 auto;
+  padding: 150px 200px 100px 200px;
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: #aaa;
+}
+
+/* 3열 정렬 */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+.grid-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #1a1a1a;
+  display: none;
+  cursor: pointer; /* 마우스 올렸을 때 클릭 가능한 손가락 모양 */
+}
+
+/* 초기 9개 노출 (3열이므로 9개가 깔끔함) */
+.grid-item:nth-child(-n+9),
+.grid-item.show {
+  display: block;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.6);
+  transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.grid-item:hover img {
+  filter: brightness(1);
+  transform: scale(1.08);
+}
+
+.info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+.grid-item:hover .info-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-overlay h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.info-overlay p {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.more-btn {
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 12px 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.more-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+footer {
+  width: 100%;
+  height: 150px;
+  background: #000;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* ==========================================
+   상세 보기 모달 팝업 스타일 (크기 고정 업데이트)
+========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  width: auto; /* 이미지 고정 크기에 맞추기 위해 auto로 변경 */
+  max-width: 95%;
+  border: 1px solid #444;
+  position: relative;
+  transform: translateY(30px);
+  transition: transform 0.4s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 화면 너비가 넓은 데스크탑 환경에서 좌우 정렬 및 이미지 크기 600x600 고정 */
+@media (min-width: 900px) {
+  .modal-body {
+    flex-direction: row;
+  }
+
+  .modal-img-wrap {
+    width: 600px;  /* 💡 가로 600px 고정 */
+    height: 600px; /* 💡 세로 600px 고정 */
+    flex: none;    /* Flex 비율 분배 해제 */
+  }
+
+  .modal-txt-wrap {
+    width: 400px;  /* 텍스트 영역 가로 크기 지정 */
+    height: 600px; /* 이미지 높이와 통일하여 대칭 구축 */
+    padding: 50px;
+  }
+}
+
+/* 반응형 모바일 환경 대응 (화면이 너무 좁을 때) */
+@media (max-width: 899px) {
+  .modal-content {
+    width: 90%;
+    max-width: 500px;
+  }
+  .modal-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  .modal-txt-wrap {
+    padding: 30px 20px;
+  }
+}
+
+.modal-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-txt-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-txt-wrap h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.modal-txt-wrap p {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.7;
+}
