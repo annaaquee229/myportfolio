@@ -466,8 +466,10 @@ header nav ul li a:hover::after {
 
 
 /* [네 번째 섹션] 240px 상품 가로 무한 스크롤러 핵심 스타일 */
+
 .section-goods {
-  background: #252525;
+  /* 💡 기존 #252525 대신, 핑크와 찰떡이고 무게감 중심을 꽉 잡아주는 다크 와인 버건디로 변경 */
+  background: #2D161B; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -491,14 +493,16 @@ header nav ul li a:hover::after {
 .goods-header h2 {
   font-size: 2.5rem;
   font-weight: 900;
-  color: #fff;
+  /* 💡 완전 생화이트 대신, 세 번째 섹션의 오트밀 크림빛(#F7F4F0)을 이어받아 부드럽고 고급스럽게 강조 */
+  color: #F7F4F0; 
   letter-spacing: -1px;
   margin-bottom: 8px;
 }
 
 .goods-header p {
   font-size: 0.9rem;
-  color: #666;
+  /* 💡 어두운 핑크레드 배경 위에서 서브 텍스트가 은은하고 세련되게 읽히도록 크림 그레이로 변경 */
+  color: #CFCCC8; 
   letter-spacing: 1px;
 }
 
@@ -528,22 +532,27 @@ header nav ul li a:hover::after {
 .goods-item {
   width: 280px !important; 
   flex-shrink: 0 !important; 
-  background:#252525;
-  border: 1px solid #222;
+  /* 💡 상품 카드 배경도 전체 배경과 일치시켜서 상품 이미지만 공중에 깔끔하게 뜨도록 투명 처리 */
+  background: transparent; 
+  /* 💡 은은한 와인빛 테두리를 주어 고급스러운 경계를 잡아줍니다 */
+  border: 1px solid transparent; 
   transition: transform 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
 }
 
 .goods-item:hover {
   transform: translateY(-5px);
-  border-color: #444;
+  /* 💡 마우스를 올리면 테두리가 크림빛으로 맑고 또렷하게 강조됩니다 */
+  border-color: rgba(247, 244, 240, 0.4); 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
 }
+
 
 .goods-img-box {
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #252525;
+  background: transparent;
 }
 
 .goods-img-box img {
@@ -557,6 +566,7 @@ header nav ul li a:hover::after {
   transform: scale(1.05);
 }
 
+/* 상품 정보 레이아웃 (호버 시 아래서 위로 스르륵 등장) */
 .goods-info {
   padding: 18px 15px;
   text-align: left; 
@@ -573,7 +583,8 @@ header nav ul li a:hover::after {
 .goods-info .brand {
   font-size: 0.75rem;
   font-weight: 800;
-  color: #ff3366;
+  /* 💡 안나 님의 시그니처 핑크 색상(#F383A7)으로 브랜드를 콕 집어주어 아이덴티티를 통일합니다! */
+  color: #F383A7; 
   letter-spacing: 1px;
   display: block;
   margin-bottom: 6px;
@@ -582,7 +593,7 @@ header nav ul li a:hover::after {
 .goods-info .title {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #fff;
+  color: #F7F4F0; /* 글자색도 부드러운 크림화이트로 통일 */
   line-height: 1.4;
   margin-bottom: 8px;
   white-space: normal;
@@ -595,7 +606,7 @@ header nav ul li a:hover::after {
 .goods-info .price {
   font-size: 1rem;
   font-weight: 700;
-  color: #fff;
+  color: #F7F4F0;
 }
 
 footer {
