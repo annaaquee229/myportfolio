@@ -2,7 +2,21 @@
    [JS] ANNETIQUE STUDIO 통합 인터랙션 로직
 -------------------------------------------------- */
 
-// 1. 첫 번째 섹션: 가로 무한 슬라이더 및 재생/정지 제어
+// 글로벌 요소 바인딩
+const mainWrapper = document.querySelector('.main-wrapper'); 
+const goodsContainer = document.querySelector('.goods-container');
+const goodsList = document.querySelector('.goods-list');
+
+/* 0. 네 번째 섹션(GOODS): 마우스 휠 세로 -> 가로 전환 (안전 순정 방식) */
+if (goodsContainer) {
+  goodsContainer.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    goodsContainer.scrollLeft += e.deltaY;
+  }, { passive: false });
+}
+
+
+/* 1. 첫 번째 섹션: 가로 무한 슬라이더 및 재생/정지 제어 */
 let currentX = 0;
 const totalSlides = 3;
 const xSlider = document.getElementById('xSlider');
@@ -61,18 +75,15 @@ if (slideAutoBtn) {
 }
 
 
-// 2. 네 번째 섹션: 가로 드래그/마우스 휠 스크롤 전환 로직
-const goodsContainer = document.querySelector('.goods-container');
-const goodsList = document.querySelector('.goods-list');
-
+/* 2. 네 번째 섹션: 끊김 없는 무한 리핏 흐름 제어 (Clone 방식 복구) */
 if (goodsContainer && goodsList) {
-  // [A] 마우스 휠 세로 -> 가로 전환
-  goodsContainer.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    goodsContainer.scrollLeft += e.deltaY;
-  }, { passive: false });
+  // 💡 [핵심 순서] 1단계: 기존 상품 목록의 원래 너비(오리지널 크기)를 먼저 기억해 둡니다.
+  const originalWidth = goodsList.scrollWidth;
 
-  // [B] 자동 흐름 제어 (마우스 오버 시 일시정지)
+  // 💡 2단계: 기존 리스트 안의 아이템들을 통째로 복사(Clone)해서 뒤에 이어 붙여 줍니다.
+  const cloneNodes = goodsList.innerHTML;
+  goodsList.innerHTML += cloneNodes; // 똑같은 아이템들이 뒤에 한 세트 더 생김!
+
   let scrollSpeed = 1; 
   let animationFrameId = null;
   let isHovered = false;
@@ -80,7 +91,10 @@ if (goodsContainer && goodsList) {
   function autoScroll() {
     if (!isHovered) {
       goodsContainer.scrollLeft += scrollSpeed;
-      if (goodsContainer.scrollLeft >= (goodsContainer.scrollWidth - goodsContainer.clientWidth)) {
+      
+      // 💡 3단계: 화면이 굴러가다가 '오리지널 세트'만큼 완전히 지나가는 순간!
+      // 사용자가 눈치채지 못하게 순식간에 스크롤 위치를 맨 앞으로 순간 이동 시킵니다.
+      if (goodsContainer.scrollLeft >= originalWidth) {
         goodsContainer.scrollLeft = 0;
       }
     }
@@ -93,8 +107,7 @@ if (goodsContainer && goodsList) {
 }
 
 
-// 3. 전체 영역: 우측 미니멀 숫자 내비게이션 & 상단 프로그레스 바 제어
-const mainWrapper = document.querySelector('.main-wrapper'); 
+/* 3. 전체 영역: 우측 미니멀 숫자 내비게이션 & 상단 프로그레스 바 제어 */
 const dots = document.querySelectorAll('.section-nav .dot');
 const sections = document.querySelectorAll('.outer-section');
 
@@ -137,7 +150,7 @@ if (dots.length > 0 && sections.length > 0 && mainWrapper) {
 }
 
 
-// 4. 전체 영역: 마우스 팔로우 커스텀 커서 제어
+/* 4. 전체 영역: 마우스 팔로우 커스텀 커서 제어 */
 const customCursor = document.querySelector('.custom-cursor');
 
 if (customCursor) {
