@@ -30,15 +30,18 @@ let slideInterval = setInterval(moveX, 2000);
 function moveX() {
   currentX++;
   if (xSlider) {
+    // 1. 4번째 복사본 슬라이드로 부드럽게 밀어줍니다 (0.6초 소요)
     xSlider.style.transition = "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
     updateSlider();
     
+    // 2. 4번째 슬라이드(복사본) 위치에 도달했을 때
     if (currentX === totalSlides) {
       setTimeout(() => {
+        // 0.6초 뒤에 이동이 완전히 끝나면, 애니메이션을 끄고 순식간에 진짜 1번(0번째)으로 이동!
         xSlider.style.transition = "none";
         currentX = 0;
         updateSlider();
-      }, 600);
+      }, 600); // 💡 이동하는 시간(600ms = 0.6초)과 1ms의 오차도 없이 맞춥니다.
     }
   }
 }

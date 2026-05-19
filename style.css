@@ -92,7 +92,7 @@ header nav ul li a:hover::after {
 
 .x-slider-container {
   display: flex;
-  width: 400%;
+  width: 400vw;
   height: 100%;
 }
 
